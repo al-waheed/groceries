@@ -6,7 +6,11 @@ export const Groceries = [
     prices: [{ small: 1.99, medium: 2.99, large: 3.99 }],
     importance: "High",
     images: "/images/carrot.png",
-    features: ["Rich in Vitamin A", "Good source of fiber"],
+    features: [
+      "Rich in Vitamin A",
+      "Good source of fiber",
+      "Storage Life: 2 weeks",
+    ],
   },
   {
     name: "Apple",
@@ -15,7 +19,11 @@ export const Groceries = [
     prices: [{ small: 0.99, medium: 1.99, large: 2.99 }],
     importance: "Moderate",
     images: "/images/apple.png",
-    features: ["Rich in antioxidants", "Contains dietary fiber"],
+    features: [
+      "Rich in antioxidants",
+      "Contains dietary fiber",
+      "Storage Life: 1 week",
+    ],
   },
   {
     name: "Vegan Red Tomato",
@@ -24,7 +32,11 @@ export const Groceries = [
     prices: [{ small: 0.79, medium: 1.79, large: 2.79 }],
     importance: "Moderate",
     images: "/images/tomato.png",
-    features: ["Rich in lycopene", "Contains Vitamin C"],
+    features: [
+      "Rich in lycopene",
+      "Contains Vitamin C",
+      "Storage Life: 1 week",
+    ],
   },
   {
     name: "Calabrese Broccoli",
@@ -33,7 +45,11 @@ export const Groceries = [
     prices: [{ small: 2.49, medium: 3.49, large: 4.49 }],
     importance: "High",
     images: "/images/broccoli.png",
-    features: ["Rich in vitamins and minerals", "High in fiber"],
+    features: [
+      "Rich in vitamins and minerals",
+      "High in fiber",
+      "Storage Life: 1 week",
+    ],
   },
   {
     name: "Fresh Banana Fruites",
@@ -42,7 +58,11 @@ export const Groceries = [
     prices: [{ small: 0.69, medium: 1.69, large: 2.69 }],
     importance: "Moderate",
     images: "/images/banana.png",
-    features: ["Good source of potassium", "Rich in Vitamin C"],
+    features: [
+      "Good source of potassium",
+      "Rich in Vitamin C",
+      "Storage Life: 1 week",
+    ],
   },
   {
     name: "Eggs",
@@ -51,7 +71,11 @@ export const Groceries = [
     prices: [{ small: 0.89, medium: 1.89, large: 2.89 }],
     importance: "Moderate",
     images: "/images/egg.png",
-    features: ["Excellent source of protein", "Rich in essential vitamins"],
+    features: [
+      "Excellent source of protein",
+      "Rich in essential vitamins",
+      "Storage Life: 3 weeks",
+    ],
   },
   {
     name: "Mung Bean",
@@ -74,7 +98,12 @@ export const Groceries = [
     prices: [{ small: 1.49, medium: 2.49, large: 3.49 }],
     importance: "Low",
     images: "/images/lettuce.png",
-    features: ["Good source of Vitamin K", "Low in calories"],
+    features: [
+      "Good source of Vitamin K",
+      "Low in calories",
+      "Contains antioxidants",
+      "Provides folate",
+    ],
   },
   {
     name: "Beef",
@@ -83,7 +112,12 @@ export const Groceries = [
     prices: [{ small: 8.99, medium: 9.99, large: 10.99 }],
     importance: "Moderate",
     images: "/images/beef.png",
-    features: ["Rich in iron", "Good source of protein"],
+    features: [
+      "Rich in iron",
+      "Good source of protein",
+      "Contains essential amino acids",
+      "Provides Vitamin B12",
+    ],
   },
   {
     name: "Orange",
@@ -92,7 +126,12 @@ export const Groceries = [
     prices: [{ small: 0.79, medium: 1.79, large: 2.79 }],
     importance: "Moderate",
     images: "/images/orange.png",
-    features: ["High in Vitamin C", "Contains dietary fiber"],
+    features: [
+      "High in Vitamin C",
+      "Contains dietary fiber",
+      "Rich in antioxidants",
+      "Provides potassium",
+    ],
   },
   {
     name: "Spinach",
@@ -101,7 +140,12 @@ export const Groceries = [
     prices: [{ small: 1.29, medium: 2.29, large: 3.29 }],
     importance: "High",
     images: "/images/spinach.png",
-    features: ["Rich in iron", "Good source of vitamins"],
+    features: [
+      "Rich in iron",
+      "Good source of vitamins",
+      "High in antioxidants",
+      "Contains calcium",
+    ],
   },
   {
     name: "Organic Almonds",
@@ -110,7 +154,12 @@ export const Groceries = [
     prices: [{ small: 5.99, medium: 6.99, large: 7.99 }],
     importance: "High",
     images: "/images/almond.png",
-    features: ["Good source of healthy fats", "High in Vitamin E"],
+    features: [
+      "Good source of healthy fats",
+      "High in Vitamin E",
+      "Rich in antioxidants",
+      "Provides magnesium",
+    ],
   },
   {
     name: "Strawberry",
@@ -119,7 +168,12 @@ export const Groceries = [
     prices: [{ small: 1.49, medium: 2.49, large: 3.49 }],
     importance: "Moderate",
     images: "/images/strawberry.png",
-    features: ["Rich in antioxidants", "Good source of Vitamin C"],
+    features: [
+      "Rich in antioxidants",
+      "Good source of Vitamin C",
+      "Contains dietary fiber",
+      "Provides manganese",
+    ],
   },
   {
     name: "Cabbage",
@@ -128,7 +182,12 @@ export const Groceries = [
     prices: [{ small: 1.19, medium: 2.19, large: 3.19 }],
     importance: "Moderate",
     images: "/images/cabbage.png",
-    features: ["High in fiber", "Rich in Vitamin C"],
+    features: [
+      "High in fiber",
+      "Rich in Vitamin C",
+      "Good source of Vitamin K",
+      "Contains phytonutrients",
+    ],
   },
   {
     name: "Fresh Corn",
@@ -151,8 +210,12 @@ export const Groceries = [
     prices: [{ small: 2.99, medium: 3.99, large: 4.99 }],
     importance: "Moderate",
     images: "/images/pineapple.png",
-    features: ["High in Vitamin C", "Contains bromelain enzyme"],
+    features: [
+      "High in Vitamin C",
+      "Contains bromelain enzyme",
+      "Rich in antioxidants",
+      "Provides manganese",
+    ],
   },
 ];
-
 export default Groceries;

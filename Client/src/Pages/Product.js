@@ -26,6 +26,7 @@ export default function Product() {
         </div>
         <div className="flex items-center justify-around flex-wrap">
           {dataToShow.map((items, id) => {
+            console.log(items.prices[0])
             return <Items key={id} items={items} />;
           })}
         </div>

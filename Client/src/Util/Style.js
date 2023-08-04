@@ -35,7 +35,7 @@ export const ButtonStyle2 = Styled.button`
 `;
 
 export const SmallButtonStyle = Styled.button`
-  padding: 4px 10px 4px 10px;
+  padding: 6px 12px 6px 12px;
   font-size: 13px;
   border-radius: 6px;
   color: #ffffff;
@@ -44,6 +44,14 @@ export const SmallButtonStyle = Styled.button`
   &:hover{
     background: #f08181;
   }
+`;
+
+export const CategoryButtonStyle = Styled.button`
+  padding: 5px 10px 5px 10px;
+  font-size: 10px;
+  border-radius: 6px;
+  color: #ffffff;
+  background: ${(props) => props.background || color.ORANGE};
 `;
 
 export const MainTextStyle = Styled.h1`
