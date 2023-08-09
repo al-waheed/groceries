@@ -1,4 +1,4 @@
-export const Groceries = [
+export const grocery = [
   {
     name: "Carrot",
     category: "Vegetable",
@@ -218,4 +218,5 @@ export const Groceries = [
     ],
   },
 ];
-export default Groceries;
+
+export default grocery

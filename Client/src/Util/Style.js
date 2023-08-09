@@ -1,5 +1,5 @@
 import Styled from "styled-components";
-import color from "../Util/Color";
+import color from "./Color";
 
 export const ButtonStyle = Styled.button`
   width: 186px;

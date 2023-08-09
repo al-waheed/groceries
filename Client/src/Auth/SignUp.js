@@ -115,7 +115,7 @@ export default function SignUp() {
                     >
                       Already have an Account ?     
                       <span style={{ fontWeight: "700", color: "#F55253" }}>
-                        <Link to="/SignIn">  Sign In</Link>
+                        <Link to="/signin">  Sign In</Link>
                       </span>
                     </SmallTextStyle>
                   </div>

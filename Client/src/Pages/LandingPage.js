@@ -1,13 +1,14 @@
+import React from "react";
 import CTA from "./CTA";
 import HeroSection from "./HeroSection";
-import Navbar from "./Navbar";
 import Service from "./Service";
 import Feature from "./Feature";
 import SecondFeature from "./SecondFeature";
 import Footer from "./Footer";
 import Product from "./Product";
+import Navbar from "./Navbar";
 
-function Components() {
+export default function LandingPage() {
   return (
     <div>
       <Navbar />
@@ -21,5 +22,3 @@ function Components() {
     </div>
   );
 }
-
-export default Components;

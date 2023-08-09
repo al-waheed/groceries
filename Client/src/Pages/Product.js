@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Groceries from "../Util/GroceryData";
+import grocery from "../Util/GroceryData";
 import Items from "./Items";
 import {
   SubHeaderStyle,
@@ -12,8 +12,8 @@ import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 export default function Product() {
   const [showAll, setShowAll] = useState(false);
 
-  const sixGroceries = Groceries.filter((x, i) => i < 8);
-  const dataToShow = showAll ? Groceries : sixGroceries;
+  const sixGroceries = grocery.filter((x, i) => i < 8);
+  const dataToShow = showAll ? grocery : sixGroceries;
 
   return (
     <>
