@@ -1,0 +1,28 @@
+import { combineReducers } from "redux";
+import { legacy_createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { getAllGroceriesReducers } from "./Reducers/GroceryReducer";
+import { CartReducer } from "./Reducers/CartReducer";
+
+const finalReducer = combineReducers({
+  getAllGroceriesReducers: getAllGroceriesReducers,
+  CartReducer: CartReducer,
+});
+
+const cartItems = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : [];
+const initialState = {
+  CartReducer: {
+    cartItems: cartItems,
+  },
+};
+const composeEnhancers = composeWithDevTools({});
+const store = legacy_createStore(
+  finalReducer,
+  initialState,
+  composeEnhancers(applyMiddleware(thunk))
+);
+
+export default store;

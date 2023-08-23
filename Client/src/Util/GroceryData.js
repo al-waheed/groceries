@@ -4,7 +4,6 @@ export const grocery = [
     category: "Vegetable",
     varients: ["small", "medium", "large"],
     prices: [{ small: 1.99, medium: 2.99, large: 3.99 }],
-    importance: "High",
     images: "/images/carrot.png",
     features: [
       "Rich in Vitamin A",
@@ -17,7 +16,6 @@ export const grocery = [
     category: "Fruit",
     varients: ["small", "medium", "large"],
     prices: [{ small: 0.99, medium: 1.99, large: 2.99 }],
-    importance: "Moderate",
     images: "/images/apple.png",
     features: [
       "Rich in antioxidants",
@@ -30,7 +28,6 @@ export const grocery = [
     category: "Vegetable",
     varients: ["small", "medium", "large"],
     prices: [{ small: 0.79, medium: 1.79, large: 2.79 }],
-    importance: "Moderate",
     images: "/images/tomato.png",
     features: [
       "Rich in lycopene",
@@ -43,7 +40,6 @@ export const grocery = [
     category: "Vegetable",
     varients: ["small", "medium", "large"],
     prices: [{ small: 2.49, medium: 3.49, large: 4.49 }],
-    importance: "High",
     images: "/images/broccoli.png",
     features: [
       "Rich in vitamins and minerals",
@@ -56,7 +52,6 @@ export const grocery = [
     category: "Fruit",
     varients: ["small", "medium", "large"],
     prices: [{ small: 0.69, medium: 1.69, large: 2.69 }],
-    importance: "Moderate",
     images: "/images/banana.png",
     features: [
       "Good source of potassium",
@@ -69,7 +64,6 @@ export const grocery = [
     category: "Poultry",
     varients: ["small", "medium", "large"],
     prices: [{ small: 0.89, medium: 1.89, large: 2.89 }],
-    importance: "Moderate",
     images: "/images/egg.png",
     features: [
       "Excellent source of protein",
@@ -82,8 +76,7 @@ export const grocery = [
     category: "Vegetable",
     varients: ["small", "medium", "large"],
     prices: [{ small: 1.25, medium: 2.25, large: 3.25 }],
-    importance: "Moderate",
-    images: "/images/Mung bean.png",
+    images: "/images/Mungbean.png",
     features: [
       "Rich in protein",
       "High in dietary fiber",
@@ -96,8 +89,7 @@ export const grocery = [
     category: "Vegetable",
     varients: ["small", "medium", "large"],
     prices: [{ small: 1.49, medium: 2.49, large: 3.49 }],
-    importance: "Low",
-    images: "/images/lettuce.png",
+    mages: "/images/lettuce.png",
     features: [
       "Good source of Vitamin K",
       "Low in calories",
@@ -110,7 +102,6 @@ export const grocery = [
     category: "Meat",
     varients: ["small", "medium", "large"],
     prices: [{ small: 8.99, medium: 9.99, large: 10.99 }],
-    importance: "Moderate",
     images: "/images/beef.png",
     features: [
       "Rich in iron",
@@ -124,7 +115,6 @@ export const grocery = [
     category: "Fruit",
     varients: ["small", "medium", "large"],
     prices: [{ small: 0.79, medium: 1.79, large: 2.79 }],
-    importance: "Moderate",
     images: "/images/orange.png",
     features: [
       "High in Vitamin C",
@@ -138,7 +128,6 @@ export const grocery = [
     category: "Vegetable",
     varients: ["small", "medium", "large"],
     prices: [{ small: 1.29, medium: 2.29, large: 3.29 }],
-    importance: "High",
     images: "/images/spinach.png",
     features: [
       "Rich in iron",
@@ -152,7 +141,6 @@ export const grocery = [
     category: "Nuts",
     varients: ["small", "medium", "large"],
     prices: [{ small: 5.99, medium: 6.99, large: 7.99 }],
-    importance: "High",
     images: "/images/almond.png",
     features: [
       "Good source of healthy fats",
@@ -166,7 +154,6 @@ export const grocery = [
     category: "Fruit",
     varients: ["small", "medium", "large"],
     prices: [{ small: 1.49, medium: 2.49, large: 3.49 }],
-    importance: "Moderate",
     images: "/images/strawberry.png",
     features: [
       "Rich in antioxidants",
@@ -180,7 +167,6 @@ export const grocery = [
     category: "Vegetable",
     varients: ["small", "medium", "large"],
     prices: [{ small: 1.19, medium: 2.19, large: 3.19 }],
-    importance: "Moderate",
     images: "/images/cabbage.png",
     features: [
       "High in fiber",
@@ -194,7 +180,6 @@ export const grocery = [
     category: "Legume",
     varients: ["small", "medium", "large"],
     prices: [{ small: 0.14, medium: 1.14, large: 2.14 }],
-    importance: "Moderate",
     images: "/images/corn.png",
     features: [
       "Good source of carbohydrates",
@@ -208,7 +193,6 @@ export const grocery = [
     category: "Fruit",
     varients: ["small", "medium", "large"],
     prices: [{ small: 2.99, medium: 3.99, large: 4.99 }],
-    importance: "Moderate",
     images: "/images/pineapple.png",
     features: [
       "High in Vitamin C",
@@ -219,4 +203,4 @@ export const grocery = [
   },
 ];
 
-export default grocery
+export default grocery;

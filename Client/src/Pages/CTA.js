@@ -5,6 +5,7 @@ import {
   ButtonStyle,
   SubHeaderStyle,
 } from "../Util/Style.js";
+import { AppStoreIcon, PlayStoreIcon } from "../Util/AppLogo.js";
 
 export default function CTA() {
   return (
@@ -13,7 +14,7 @@ export default function CTA() {
         <div className="flex justify-center items-center bg-[#FEF5F5] h-[760px] py-[100px] px-52">
           <div className="w-[664px] h-auto" style={{ flex: "0 0 50%" }}>
             <img
-              src="/images/mobile mockup.png"
+              src="/images/mobile-mockup.png"
               alt="img"
               className="max-w-[none]"
             />
@@ -49,7 +50,7 @@ export default function CTA() {
                 }}
               >
                 <div>
-                  <img src="/images/iphone.png" alt="maker_logo" />
+                  <AppStoreIcon/>
                 </div>
                   App Store
               </ButtonStyle>
@@ -66,7 +67,7 @@ export default function CTA() {
                 }}
               >
                 <div>
-                  <img src="/images/android.png" alt="maker_logo" />
+                  <PlayStoreIcon/>
                 </div>
                   Play Store
               </ButtonStyle>

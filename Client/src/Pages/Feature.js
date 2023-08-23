@@ -12,7 +12,7 @@ export default function Feature() {
         <div className="flex justify-evenly items-center bg-[#FEF5F5]">
           <div className="w-[664px] h-auto" style={{ flex: "0 0 50%" }}>
             <img
-              src="/images/image and card.png"
+              src="/images/imageandcard.png"
               alt="img"
               className="max-w-[none]"
             />

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { TextStyle, SmallHeaderStyle, SmallTextStyle } from "../Util/Style";
+import {AppLogo} from "../Util/AppLogo";
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
           <div className="mr-44">
             <h1 className="text-[#F55253] text-[28px] font-bold mb-6">
               <Link to="/">
-                <img src="/images/logo.png" alt="logo" className="text-4xl" />
+                <AppLogo/>
               </Link>
             </h1>
             <TextStyle

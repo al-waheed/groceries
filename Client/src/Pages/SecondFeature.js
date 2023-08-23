@@ -35,7 +35,7 @@ export default function SecondFeature() {
         </div>
         <div className="w-[664px] h-auto" style={{ flex: "0 0 10%" }}>
           <img
-            src="/images/image & card.png"
+            src="/images/image&card.png"
             alt="img"
             className="max-w-[none]"
           />

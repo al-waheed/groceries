@@ -1,10 +1,33 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  faSearch,
+  faBars,
+  faXmark,
+  faBasketShopping,
+} from "@fortawesome/free-solid-svg-icons";
+import { styled } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
 import { Link } from "react-router-dom";
+import {AppLogo} from "../Util/AppLogo";
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: -10,
+    border: `4px solid #F54B4B`,
+    padding: '0 4px',
+    color: 'white',
+    background: '#F54748',
+  },
+}));
 
 const Navbar = () => {
+  const cartState = useSelector((state) => state.CartReducer);
+
   const [nav, setNav] = useState(false);
+
   const handleNav = () => {
     setNav(!nav);
   };
@@ -12,30 +35,24 @@ const Navbar = () => {
     <div className="flex justify-between items-center py-8 max-w-[1200px] mx-auto">
       <h1 className="text-[#F55253] text-[28px] font-bold">
         <Link to="/">
-          <img src="/images/logo.png" alt="" className="text-4xl" />
+          <AppLogo/>
         </Link>
       </h1>
       <div className="hidden lg:flex items-center cursor-pointer">
-        <ul className=" flex items-center font-medium text-base text-[#4D4D4D]">
+        <ul className="flex items-center font-medium text-base text-[#4D4D4D]">
           <li className="px-6 text-[#F55253]">
             <Link to="/"> Home </Link>
           </li>
           <li className="px-6">Menu</li>
           <li className="px-6">Service</li>
           <li className="px-6">Shop</li>
-          <li className="px-6">
-            <Link to="/signIn"> SignIn </Link>
-          </li>
-          <li className="px-6">
-            <Link to="/signUp"> SignUp </Link>
-          </li>
         </ul>
         <div className="ml-24 relative">
           <input
             type="text"
             placeholder="Search"
-            className="h-14 w-72 text-[16px] font-medium outline-none pl-12 text-[#232323] 
-            drop-shadow-lg bg-[#Ffffff] rounded-lg"
+            className="h-14 w-80 text-[16px] font-medium outline-none pl-12 text-[#232323] 
+            drop-shadow-md bg-[#Ffffff] rounded-lg"
           />
           <div className="absolute top-1/2 -translate-y-1/2 left-5">
             <FontAwesomeIcon
@@ -43,7 +60,23 @@ const Navbar = () => {
               className="text-[#8B8B8B] text-[16px]"
             />
           </div>
+          <div className="flex items-center absolute top-1/2 -translate-y-1/2 right-3">
+            <div
+              className="h-7 w-[1px]"
+              style={{ border: "1px solid #F2F2F2" }}
+            ></div>
+            <Link to="/cart">
+            <StyledBadge badgeContent={cartState.cartItems.length}>
+              <FontAwesomeIcon
+                icon={faBasketShopping}
+                beatFade
+                className="text-[#3c3737] text-[25px] ml-3"
+              />
+              </StyledBadge>
+            </Link>
+          </div>
         </div>
+        <div className="ml-24"></div>
       </div>
       <div onClick={handleNav} className="block lg:hidden">
         {!nav ? (

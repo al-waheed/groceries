@@ -5,6 +5,7 @@ import {
   SmallHeaderStyle,
   TextStyle,
 } from "../Util/Style";
+import { ShippingIcon, SecureIcon, ReturnIcon } from "../Util/AppLogo";
 
 export default function Service() {
   return (
@@ -23,7 +24,7 @@ export default function Service() {
             className=" flex flex-col justify-center items-center w-[300px] 
 		  h-[310px] bg-[#FEF5F5] hover:shadow-lg rounded-xl"
           >
-            <img src="/images/icon.png" alt="service_icon" />
+            <ShippingIcon />
             <SmallHeaderStyle>Free shipping</SmallHeaderStyle>
             <TextStyle
               style={{
@@ -38,12 +39,12 @@ export default function Service() {
             </TextStyle>
           </div>
           <div className="relative">
-		  <div className="bg-[#FE6A6A] rounded-xl w-[310px] h-[334px] rotate-[-3deg]"></div>
+            <div className="bg-[#FE6A6A] rounded-xl w-[310px] h-[334px] rotate-[-3deg]"></div>
             <div
               className=" flex flex-col justify-center items-center w-[300px] 
 			h-[310px] bg-[#FEF5F5] rounded-xl absolute top-[46.5%] -translate-y-1/2"
             >
-              <img src="/images/Group 1737.png" alt="service_icon" />
+              <ReturnIcon />
               <SmallHeaderStyle>15 days returns</SmallHeaderStyle>
               <TextStyle
                 style={{
@@ -62,7 +63,7 @@ export default function Service() {
             className=" flex flex-col justify-center items-center w-[300px] 
 			h-[310px] bg-[#FEF5F5] hover:shadow-lg rounded-xl"
           >
-            <img src="/images/Group 1736.png" alt="service_icon" />
+            <SecureIcon />
             <SmallHeaderStyle>Secure checkout</SmallHeaderStyle>
             <TextStyle
               style={{

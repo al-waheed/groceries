@@ -8,6 +8,8 @@ import {
 } from "../Util/Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../Actions/CartActions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Tooltip from "@mui/material/Tooltip";
@@ -31,11 +33,16 @@ export default function Items({ items }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+const dispatch = useDispatch();
+
+  const addtocart = () => {
+    dispatch(addToCart(items, quantity, varient ));
+  };
 
   return (
     <>
       <div
-        className=" flex flex-col justify-between w-[300px] 
+        className="flex flex-col justify-between w-[300px] 
 	      h-[440px] bg-white rounded-xl p-5 mb-8 hover:shadow-lg"
       >
         <Tooltip title="Click to view item features">
@@ -108,9 +115,9 @@ export default function Items({ items }) {
         <hr />
         <div className="flex justify-between items-center">
           <SmallHeaderStyle style={{ fontSize: "17px", color: "#F54748" }}>
-            ₦{items.prices[0][varient] * quantity} 
+            ₦{(items.prices[0][varient] * quantity).toFixed(2)}
           </SmallHeaderStyle>
-          <SmallButtonStyle style={{ fontSize: "12px" }}>
+          <SmallButtonStyle style={{ fontSize: "12px" }} onClick={addtocart}>
             Add To Cart
           </SmallButtonStyle>
         </div>
