@@ -1,137 +1,136 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Formik, Field, Form } from "formik";
-import { MainTextStyle, SmallHeaderStyle, SmallTextStyle } from "../Util/Style";
+import React, { useEffect, useState } from "react";
+import { Field, Form, FormSpy } from "react-final-form";
+import Box from "@mui/material/Box";
+import Link from "@mui/material/Link";
+import Typography from "./modules/components/Typography";
+import AppForm from "./modules/views/AppForm";
+import { email, required } from "./modules/form/validation";
+import RFTextField from "./modules/form/RFTextField";
+import FormButton from "./modules/form/FormButton";
+import Alert from "@mui/material/Alert";
+import FormFeedback from "./modules/form/FormFeedback";
+import withRoot from "./modules/withRoot";
+import { useDispatch, useSelector } from "react-redux";
+import { signinUsers } from "../Actions/UserActions";
+import Error from "../Pages/Error";
+import Loading from "../Pages/Loading";
 
-export default function SignIn() {
+function SignIn() {
+  const [sent, setSent] = useState(false);
+  const signinState = useSelector((state) => state.signinUsersReducer);
+  const { error, loading } = signinState;
+
+  const dispatch = useDispatch();
+
+  const validate = (values) => {
+    const errors = required(["email", "password"], values);
+
+    if (!errors.email) {
+      const emailError = email(values.email);
+      if (emailError) {
+        errors.email = emailError;
+      }
+    }
+
+    return errors;
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem("currentUser")) {
+      window.location.href = "/";
+    }
+  }, []);
+
+  const handleSubmit = (formData, values) => {
+    console.log(formData);
+    setSent(true);
+    dispatch(signinUsers(formData));
+    setTimeout(() => {
+      setSent(false);
+      values.reset();
+    }, 2000);
+  };
+
   return (
-    <>
-      <div className="h-[100vh] w-[100vw] bg-white">
-        <h1 className="text-[#F55253] font-bold pt-8 pl-10">
-          <Link to="/">
-            <img src="/images/logo.png" alt="" className="text-4xl" />
-          </Link>
-        </h1>
-        <div className="flex justify-center items-center">
-          <div className="w-[505px] h-[757px] rounded-xl shadow-md border-[0.5px] border-[#878787]">
-            <div className="pl-10 mt-3">
-              <SmallHeaderStyle
-                style={{
-                  fontWeight: "300",
-                  marginBottom: "8px",
-                }}
+    <React.Fragment>
+      <AppForm>
+        <React.Fragment>
+          <Typography variant="h3" gutterBottom marked="center" align="center">
+            Sign In
+          </Typography>
+          <Typography variant="body2" align="center">
+            {"Not a member yet? "}
+            <Link href="/signup" align="center" underline="always">
+              Sign Up here
+            </Link>
+            {loading && <Loading />}
+            {error && (
+              <Error
+                error={<Alert severity="error">invalid Credentials</Alert>}
+              />
+            )}
+          </Typography>
+        </React.Fragment>
+        <Form
+          onSubmit={handleSubmit}
+          subscription={{ submitting: true }}
+          validate={validate}
+        >
+          {({ handleSubmit: handleSubmit2, submitting }) => (
+            <Box
+              component="form"
+              onSubmit={handleSubmit2}
+              noValidate
+              sx={{ mt: 6 }}
+            >
+              <Field
+                autoComplete="email"
+                autoFocus
+                component={RFTextField}
+                disabled={submitting || sent}
+                fullWidth
+                label="Email"
+                margin="normal"
+                name="email"
+                required
+                size="large"
+              />
+              <Field
+                fullWidth
+                size="large"
+                component={RFTextField}
+                disabled={submitting || sent}
+                required
+                name="password"
+                autoComplete="current-password"
+                label="Password"
+                type="password"
+                margin="normal"
+              />
+              <FormSpy subscription={{ submitError: true }}>
+                {({ submitError }) =>
+                  submitError ? (
+                    <FormFeedback error sx={{ mt: 2 }}>
+                      {submitError}
+                    </FormFeedback>
+                  ) : null
+                }
+              </FormSpy>
+              <FormButton
+                sx={{ mt: 3, mb: 2 }}
+                disabled={submitting || sent}
+                size="large"
+                color="secondary"
+                fullWidth
               >
-                Welcome !
-              </SmallHeaderStyle>
-              <MainTextStyle
-                style={{
-                  fontSize: "40px",
-                  fontWeight: "500",
-                  marginBottom: "13px",
-                }}
-              >
-                Sign In
-              </MainTextStyle>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <Formik
-                initialValues={{
-                  email: "",
-                  userName: "",
-                  password: "",
-                  confirmPassword: "",
-                }}
-                onSubmit={async (values) => {
-                  await new Promise((r) => setTimeout(r, 500));
-                  alert(JSON.stringify(values, null, 2));
-                }}
-              >
-                <Form>
-                  <label htmlFor="email">
-                    <SmallTextStyle style={{ color: "black" }}>
-                      Email
-                    </SmallTextStyle>
-                  </label>
-                  <div>
-                    <Field
-                      id="email"
-                      name="email"
-                      placeholder="Enter your email"
-                      type="email"
-                      className="w-[423px] h-[59px] rounded-md bg-white border-[0.6px] border-[#282828] pl-5 mb-5"
-                    />
-                  </div>
-
-                  <label htmlFor="User name">
-                    <SmallTextStyle style={{ color: "black" }}>
-                      User name
-                    </SmallTextStyle>
-                  </label>
-                  <div>
-                    <Field
-                      id="userName"
-                      name="userName"
-                      placeholder="Enter your user name"
-                      className="w-[423px] h-[59px] rounded-md bg-white border-[0.6px] border-[#282828] pl-5 mb-5"
-                    />
-                  </div>
-
-                  <label htmlFor="Password">
-                    <SmallTextStyle style={{ color: "black" }}>
-                      Password
-                    </SmallTextStyle>
-                  </label>
-                  <div>
-                    <Field
-                      id="password"
-                      name="password"
-                      placeholder="Enter your Password"
-                      className="w-[423px] h-[59px] rounded-md bg-white border-[0.6px] border-[#282828] pl-5 mb-5"
-                    />
-                  </div>
-
-                  <label htmlFor="Confirm Password">
-                    <SmallTextStyle style={{ color: "black" }}>
-                      Confirm Password
-                    </SmallTextStyle>
-                  </label>
-                  <div>
-                    <Field
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      placeholder="Confrim your Password"
-                      className="w-[423px] h-[59px] rounded-md bg-white border-[0.6px] border-[#282828] pl-5 mb-5"
-                    />
-                  </div>
-                  <div>
-                    <button
-                      type="submit"
-                      className="w-[423px] h-[59px] rounded-md bg-[#F55253] text-base text-white mb-3"
-                    >
-                      Register
-                    </button>
-                    <SmallTextStyle
-                      style={{ fontWeight: "300", textAlign: "center" }}
-                    >
-                      Already have an Account ?     
-                      <span style={{ fontWeight: "700", color: "#F55253" }}>
-                        <Link to="/signup">  Sign In</Link>
-                      </span>
-                    </SmallTextStyle>
-                  </div>
-                </Form>
-              </Formik>
-            </div>
-          </div>
-          <div>
-            <img
-              src="/images/Delivery-bro.png"
-              alt="signUp_pic"
-              className="w-[721px] h-[721px]"
-            />
-          </div>
-        </div>
-      </div>
-    </>
+                {submitting || sent ? "In progress…" : "Sign In"}
+              </FormButton>
+            </Box>
+          )}
+        </Form>
+      </AppForm>
+    </React.Fragment>
   );
 }
+
+export default withRoot(SignIn);

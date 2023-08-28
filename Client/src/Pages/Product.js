@@ -5,9 +5,10 @@ import { SubHeaderStyle, TextHeaderStyle, ButtonStyle } from "../Util/Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { getAllGroceries } from "../Actions/GroceryAction";
+import Loading from "./Loading";
 
 export default function Product() {
-  // const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const grocerystate = useSelector((state) => state.getAllGroceriesReducers);
   const { grocery, error, loading } = grocerystate;
@@ -18,8 +19,8 @@ export default function Product() {
     dispatch(getAllGroceries());
   }, []);
 
-  // const sixGroceries = grocery.filter((x, i) => i < 8);
-  // const dataToShow = showAll ? grocery : sixGroceries;
+  const sixGroceries = grocery.filter((x, i) => i < 8);
+  const dataToShow = showAll ? grocery : sixGroceries;
 
   return (
     <>
@@ -32,16 +33,16 @@ export default function Product() {
         </div>
         <div className="flex items-center justify-around flex-wrap">
           {loading ? (
-            <h1>Loading...</h1>
+            <Loading />
           ) : error ? (
             <h1>Something went wrong</h1>
           ) : (
-            grocery.map((grocery) => {
+            dataToShow.map((grocery) => {
               return <Items key={grocery._id} items={grocery} />;
             })
           )}
         </div>
-        {/* <div className="flex justify-center">
+        <div className="flex justify-center">
           <ButtonStyle
             onClick={() => setShowAll(!showAll)}
             style={{
@@ -57,7 +58,7 @@ export default function Product() {
               className="text-[#fff] text-[20px]"
             />
           </ButtonStyle>
-        </div> */}
+        </div>
       </div>
     </>
   );

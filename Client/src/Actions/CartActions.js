@@ -5,17 +5,33 @@ export const addToCart =
       name: items.name,
       category: items.category,
       varients: varients,
-      quantity: quantity,
+      quantity: Number(quantity),
       prices: items.prices,
       price: items.prices[0][varients] * quantity,
       images: items.images,
       features: items.features,
     };
-    dispatch({ type: "ADD_TO_CART", payload: cartItem });
+    if (cartItem.quantity > 10) {
+      alert("You cannot add more than 10 quantities");
+    } else {
+      if (cartItem.quantity < 1) {
+        dispatch({ type: "DELETE_FROM_CART", payload: items });
+      } else {
+        dispatch({ type: "ADD_TO_CART", payload: cartItem });
+      }
+    }
+
     const cartItems = getState().CartReducer.cartItems;
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
-export const deleteCartItems = (items) => (dispatch) => {
+export const deleteCartItems = (items) => (dispatch, getState) => {
   dispatch({ type: "DELETE_FROM_CART", payload: items });
+  const cartItems = getState().CartReducer.cartItems;
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+};
+
+export const clearCart = () => (dispatch) => {
+  dispatch({ type: "CLEAR_CART" });
+  localStorage.removeItem("cartItems");
 };

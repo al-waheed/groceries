@@ -19,11 +19,14 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { addToCart, deleteCartItems } from "../Actions/CartActions";
+import Footer from './Footer'
+import { addToCart, deleteCartItems, clearCart } from "../Actions/CartActions";
+import CheckOut from "./CheckOut";
 
 export default function Cart() {
   const cartState = useSelector((state) => state.CartReducer);
   const cartItems = cartState.cartItems;
+  const subTotal = cartItems.reduce((acc, item) => acc + item.price, 0);
   const dispatch = useDispatch();
 
   return (
@@ -104,8 +107,10 @@ export default function Cart() {
 
                           {item.quantity}
 
-                          <div className="w-[34px] h-[34px] bg-[#F2F2F2] rounded-full flex items-center 
-						  justify-center"  onClick={() => {
+                          <div
+                            className="w-[34px] h-[34px] bg-[#F2F2F2] rounded-full flex items-center 
+						  justify-center"
+                            onClick={() => {
                               dispatch(
                                 addToCart(
                                   item,
@@ -113,7 +118,8 @@ export default function Cart() {
                                   item.varients
                                 )
                               );
-                            }}>
+                            }}
+                          >
                             <FontAwesomeIcon
                               icon={faPlus}
                               style={{ color: "#1a1a1a", fontSize: "14px" }}
@@ -128,11 +134,24 @@ export default function Cart() {
                         <FontAwesomeIcon
                           icon={faCircleXmark}
                           style={{ color: "#F54748", fontSize: "18px" }}
-						  onClick={()=>{dispatch(deleteCartItems(item))}}
+                          onClick={() => {
+                            dispatch(deleteCartItems(item));
+                          }}
                         />
                       </TableCell>
                     </TableRow>
                   ))}
+                  <TableCell>
+                    <button
+                      className="px-8 py-3.5 bg-[#F2F2F2] text-[16px] text-[#4D4D4D]
+		                rounded-[43px]"
+                      onClick={() => {
+                        dispatch(clearCart());
+                      }}
+                    >
+                      Clear cart
+                    </button>
+                  </TableCell>
                 </TableBody>
               </Table>
             </TableContainer>
@@ -148,7 +167,7 @@ export default function Cart() {
                   Subtotal:
                 </SmallTextStyle>
                 <SmallTextStyle style={{ fontSize: "14px", color: "#1A1A1A" }}>
-                  ₦45.00
+                  ₦{subTotal.toFixed(2)}
                 </SmallTextStyle>
               </div>
               <hr />
@@ -170,15 +189,10 @@ export default function Cart() {
               <div className="flex items-center justify-between">
                 <SmallTextStyle> Total:</SmallTextStyle>
                 <SmallTextStyle style={{ color: "#1A1A1A", fontWeight: "500" }}>
-                  ₦45.00
+                  ₦{subTotal.toFixed(2)}
                 </SmallTextStyle>
               </div>
-              <button
-                className="w-full px-10 py-3.5 bg-[#F54748] text-[16px] text-white 
-		  rounded-[43px]"
-              >
-                Proceed to checkout
-              </button>
+              <CheckOut subTotal={subTotal}/>
             </div>
           </div>
         ) : (
@@ -186,6 +200,7 @@ export default function Cart() {
             Your Cart is Empty
           </SubHeaderStyle>
         )}
+        <Footer/>
       </div>
     </>
   );

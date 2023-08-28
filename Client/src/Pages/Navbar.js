@@ -6,36 +6,54 @@ import {
   faBars,
   faXmark,
   faBasketShopping,
+  faCircleUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { styled } from '@mui/material/styles';
-import Badge from '@mui/material/Badge';
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import Tooltip from "@mui/material/Tooltip";
+import Badge from "@mui/material/Badge";
 import { Link } from "react-router-dom";
-import {AppLogo} from "../Util/AppLogo";
+import { AppLogo } from "../Util/AppLogo";
+import { logOutUser } from "../Actions/UserActions";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
-  '& .MuiBadge-badge': {
+  "& .MuiBadge-badge": {
     right: -3,
     top: -10,
     border: `4px solid #F54B4B`,
-    padding: '0 4px',
-    color: 'white',
-    background: '#F54748',
+    padding: "0 4px",
+    color: "white",
+    background: "#F54748",
   },
 }));
 
 const Navbar = () => {
   const cartState = useSelector((state) => state.CartReducer);
-
+  const userState = useSelector((state) => state.signinUsersReducer);
+  const { currentUser } = userState;
   const [nav, setNav] = useState(false);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const dispatch = useDispatch();
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   const handleNav = () => {
     setNav(!nav);
   };
+
   return (
-    <div className="flex justify-between items-center py-8 max-w-[1200px] mx-auto">
+    <div className="flex justify-between items-center py-8 px-24 max-w-auto mx-auto" style={{borderBottom:'1px solid #F55253'}}>
       <h1 className="text-[#F55253] text-[28px] font-bold">
         <Link to="/">
-          <AppLogo/>
+          <AppLogo />
         </Link>
       </h1>
       <div className="hidden lg:flex items-center cursor-pointer">
@@ -66,17 +84,73 @@ const Navbar = () => {
               style={{ border: "1px solid #F2F2F2" }}
             ></div>
             <Link to="/cart">
-            <StyledBadge badgeContent={cartState.cartItems.length}>
-              <FontAwesomeIcon
-                icon={faBasketShopping}
-                beatFade
-                className="text-[#3c3737] text-[25px] ml-3"
-              />
+              <StyledBadge badgeContent={cartState.cartItems.length}>
+                <FontAwesomeIcon
+                  icon={faBasketShopping}
+                  beatFade
+                  className="text-[#3c3737] text-[25px] ml-3"
+                />
               </StyledBadge>
             </Link>
           </div>
         </div>
-        <div className="ml-24"></div>
+        <div className="ml-9">
+          {currentUser ? (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open menu">
+                <Typography
+                  onClick={handleOpenUserMenu}
+                  sx={{ p: 0 }}
+                  className="text-[#4D4D4D] font-medium"
+                >
+                  Hi, {currentUser.firstName}
+                  <ArrowDropDownIcon className="text-[#F55253]" />
+                </Typography>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <div onClick={handleCloseUserMenu} className="w-24">
+                  <Typography
+                    className="text-center text-[#F55253] font-medium 
+                  cursor-pointer hover:bg-[#FDECEC] py-1 rounded-sm"
+                  >
+                    Orders
+                  </Typography>
+                  <Typography
+                    onClick={() => {
+                      dispatch(logOutUser());
+                    }}
+                    className="text-center text-[#F55253] font-medium 
+                  cursor-pointer hover:bg-[#FDECEC] py-1 rounded-sm "
+                  >
+                    Log out
+                  </Typography>
+                </div>
+              </Menu>
+            </Box>
+          ) : (
+            <Link to="/signIn">
+              <FontAwesomeIcon
+                icon={faCircleUser}
+                className="text-4xl text-[#8B8B8B]"
+              />
+            </Link>
+          )}
+        </div>
       </div>
       <div onClick={handleNav} className="block lg:hidden">
         {!nav ? (
