@@ -40,7 +40,6 @@ function SignUp() {
 
   const dispatch = useDispatch();
   const handleSubmit = (formData, values) => {
-    console.log(formData);
     setSent(true);
     dispatch(signupUsers(formData));
     setTimeout(() => {
@@ -71,7 +70,7 @@ function SignUp() {
             {error && (
               <Error
                 error={
-                  <Alert severity="success">Email Already Registered</Alert>
+                  <Alert severity="error">Email Already Registered</Alert>
                 }
               />
             )}

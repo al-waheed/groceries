@@ -10,8 +10,14 @@ router.post("/signup", async (req, res) => {
   const newUser = new User({ firstName, lastName, email, password });
 
   try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ message: "An account with this email already exists." });
+    }
     await newUser.save();
-    res.send("User Registered Successfully");
+    res.send("User Registered Successfully.");
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
@@ -32,10 +38,10 @@ router.post("/signin", async (req, res) => {
       };
       res.send(currentUser);
     } else {
-      return res.status(400).json({ message: "User Logging Failed" });
+      return res.status(400).json({ message: "User Logging Failed." });
     }
   } catch (error) {
-    return res.status(400).json({ message: "Something went wrong" });
+    return res.status(400).json({ message: "Something went wrong." });
   }
 });
 

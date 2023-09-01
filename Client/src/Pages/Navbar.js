@@ -50,7 +50,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-between items-center py-8 px-24 max-w-auto mx-auto" style={{borderBottom:'1px solid #F55253'}}>
+    <div
+      className="flex justify-between items-center py-8 px-24 max-w-auto mx-auto"
+      style={{ borderBottom: "1px solid #F55253" }}
+    >
       <h1 className="text-[#F55253] text-[28px] font-bold">
         <Link to="/">
           <AppLogo />
@@ -128,7 +131,7 @@ const Navbar = () => {
                     className="text-center text-[#F55253] font-medium 
                   cursor-pointer hover:bg-[#FDECEC] py-1 rounded-sm"
                   >
-                    Orders
+                    <Link to="/orders">Orders</Link>
                   </Typography>
                   <Typography
                     onClick={() => {

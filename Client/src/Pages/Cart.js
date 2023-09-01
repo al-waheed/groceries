@@ -156,13 +156,13 @@ export default function Cart() {
               </Table>
             </TableContainer>
             <div
-              className="flex flex-col justify-between w-[400px] h-[296px] 
-		rounded-lg border-[1px] border-[#E6E6E6] p-4"
+              className="flex flex-col justify-between w-[400px] rounded-lg 
+              border-[1px] border-[#E6E6E6] p-4"
             >
               <SmallHeaderStyle style={{ fontSize: "20px", fontWeight: "500" }}>
                 Cart Total
               </SmallHeaderStyle>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between py-2">
                 <SmallTextStyle style={{ fontSize: "14px" }}>
                   Subtotal:
                 </SmallTextStyle>
@@ -171,7 +171,7 @@ export default function Cart() {
                 </SmallTextStyle>
               </div>
               <hr />
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between py-2">
                 <SmallTextStyle style={{ fontSize: "14px" }}>
                   Shipping:
                 </SmallTextStyle>
@@ -186,7 +186,7 @@ export default function Cart() {
                 </SmallTextStyle>
               </div>
               <hr />
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between py-2">
                 <SmallTextStyle> Total:</SmallTextStyle>
                 <SmallTextStyle style={{ color: "#1A1A1A", fontWeight: "500" }}>
                   ₦{subTotal.toFixed(2)}

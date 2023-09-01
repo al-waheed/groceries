@@ -5,6 +5,7 @@ import SignIn from "./Auth/SignIn";
 import LandingPage from "./Pages/LandingPage";
 import Navbar from "./Pages/Navbar";
 import Cart from "./Pages/Cart";
+import OrderItems from "./Pages/OrderItems";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/orders" element={<OrderItems />} />
       </Routes>
     </div>
   );
