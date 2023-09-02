@@ -13,9 +13,7 @@ import FormFeedback from "./modules/form/FormFeedback";
 import withRoot from "./modules/withRoot";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUsers } from "../Actions/UserActions";
-import Error from "../Pages/Error";
-import Success from "../Pages/Success";
-import Loading from "../Pages/Loading";
+import { Loading, Success, Error } from "../Pages/AlertComponent";
 
 function SignUp() {
   const [sent, setSent] = React.useState(false);
@@ -69,9 +67,7 @@ function SignUp() {
             )}
             {error && (
               <Error
-                error={
-                  <Alert severity="error">Email Already Registered</Alert>
-                }
+                error={<Alert severity="error">Email Already Registered</Alert>}
               />
             )}
           </Typography>

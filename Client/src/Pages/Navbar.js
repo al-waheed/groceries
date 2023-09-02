@@ -6,7 +6,6 @@ import {
   faBars,
   faXmark,
   faBasketShopping,
-  faCircleUser,
 } from "@fortawesome/free-solid-svg-icons";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { styled } from "@mui/material/styles";
@@ -52,7 +51,6 @@ const Navbar = () => {
   return (
     <div
       className="flex justify-between items-center py-8 px-24 max-w-auto mx-auto"
-      style={{ borderBottom: "1px solid #F55253" }}
     >
       <h1 className="text-[#F55253] text-[28px] font-bold">
         <Link to="/">
@@ -106,7 +104,7 @@ const Navbar = () => {
                   sx={{ p: 0 }}
                   className="text-[#4D4D4D] font-medium"
                 >
-                  Hi, {currentUser.firstName}
+                  welcome, {currentUser.firstName}
                   <ArrowDropDownIcon className="text-[#F55253]" />
                 </Typography>
               </Tooltip>
@@ -146,14 +144,25 @@ const Navbar = () => {
               </Menu>
             </Box>
           ) : (
-            <Link to="/signIn">
-              <FontAwesomeIcon
-                icon={faCircleUser}
-                className="text-4xl text-[#8B8B8B]"
-              />
-            </Link>
+            <h6
+              className="mr-8 pb-1 font-medium text-[#4D4D4D]"
+              style={{ borderBottom: "2px solid #F55253" }}
+            >
+              <Link to="/signin">Log In</Link>
+            </h6>
           )}
         </div>
+        {!currentUser && (
+          <div>
+            <button
+              className="w-full px-8 py-3 bg-[#FDECEC] font-semibold 
+            border-white border-[1px] text-[#F55253] rounded-[5px]
+            hover:border-[#F55253] hover:border-[1px]"
+            >
+              <Link to="/signup">Sign Up</Link>
+            </button>
+          </div>
+        )}
       </div>
       <div onClick={handleNav} className="block lg:hidden">
         {!nav ? (

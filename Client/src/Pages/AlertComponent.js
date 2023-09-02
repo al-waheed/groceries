@@ -1,4 +1,5 @@
 import React from "react";
+import Stack from "@mui/material/Stack";
 import Styled, { keyframes } from "styled-components";
 
 const spin = keyframes`
@@ -16,10 +17,26 @@ const Loader = Styled.div`
   animation: ${spin} 2s linear infinite;
 `;
 
-export default function Loading() {
+export const Loading = () => {
   return (
     <div className="flex justify-center">
       <Loader />
     </div>
   );
-}
+};
+
+export const Error = ({ error }) => {
+  return (
+    <Stack sx={{ width: "100%" }} spacing={2}>
+      {error}
+    </Stack>
+  );
+};
+
+export const Success = ({ success }) => {
+  return (
+    <Stack sx={{ width: "100%" }} spacing={2}>
+      {success}
+    </Stack>
+  );
+};

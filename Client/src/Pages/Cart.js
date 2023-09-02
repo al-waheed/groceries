@@ -19,7 +19,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Footer from './Footer'
+import Footer from "./Footer";
 import { addToCart, deleteCartItems, clearCart } from "../Actions/CartActions";
 import CheckOut from "./CheckOut";
 
@@ -192,7 +192,7 @@ export default function Cart() {
                   ₦{subTotal.toFixed(2)}
                 </SmallTextStyle>
               </div>
-              <CheckOut subTotal={subTotal}/>
+              <CheckOut subTotal={subTotal} />
             </div>
           </div>
         ) : (
@@ -200,7 +200,7 @@ export default function Cart() {
             Your Cart is Empty
           </SubHeaderStyle>
         )}
-        <Footer/>
+        <Footer />
       </div>
     </>
   );

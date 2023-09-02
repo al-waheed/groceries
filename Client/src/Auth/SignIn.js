@@ -12,8 +12,7 @@ import FormFeedback from "./modules/form/FormFeedback";
 import withRoot from "./modules/withRoot";
 import { useDispatch, useSelector } from "react-redux";
 import { signinUsers } from "../Actions/UserActions";
-import Error from "../Pages/Error";
-import Loading from "../Pages/Loading";
+import { Loading, Error } from "../Pages/AlertComponent";
 
 function SignIn() {
   const [sent, setSent] = useState(false);

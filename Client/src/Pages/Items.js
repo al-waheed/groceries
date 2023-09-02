@@ -8,7 +8,7 @@ import {
 } from "../Util/Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addToCart } from "../Actions/CartActions";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -33,10 +33,10 @@ export default function Items({ items }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const addtocart = () => {
-    dispatch(addToCart(items, quantity, varient ));
+    dispatch(addToCart(items, quantity, varient));
   };
 
   return (

@@ -5,11 +5,11 @@ import { SubHeaderStyle, TextHeaderStyle, ButtonStyle } from "../Util/Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { getAllGroceries } from "../Actions/GroceryAction";
-import Loading from "./Loading";
+import Alert from "@mui/material/Alert";
+import { Loading, Error } from '../Pages/AlertComponent'
 
 export default function Product() {
   const [showAll, setShowAll] = useState(false);
-
   const grocerystate = useSelector((state) => state.getAllGroceriesReducers);
   const { grocery, error, loading } = grocerystate;
 
@@ -17,9 +17,19 @@ export default function Product() {
 
   useEffect(() => {
     dispatch(getAllGroceries());
-  }, []);
+  }, [dispatch]);
 
-  const sixGroceries = grocery.filter((x, i) => i < 8);
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return (
+      <Error error={<Alert severity="error">Something went wrong</Alert>} />
+    );
+  }
+
+  const sixGroceries = grocery.slice(0, 8);
   const dataToShow = showAll ? grocery : sixGroceries;
 
   return (
@@ -32,15 +42,9 @@ export default function Product() {
           <TextHeaderStyle>Our Products</TextHeaderStyle>
         </div>
         <div className="flex items-center justify-around flex-wrap">
-          {loading ? (
-            <Loading />
-          ) : error ? (
-            <h1>Something went wrong</h1>
-          ) : (
-            dataToShow.map((grocery) => {
-              return <Items key={grocery._id} items={grocery} />;
-            })
-          )}
+          {dataToShow.map((groceryItem) => {
+            return <Items key={groceryItem._id} items={groceryItem} />;
+          })}
         </div>
         <div className="flex justify-center">
           <ButtonStyle
