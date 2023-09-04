@@ -41,7 +41,6 @@ function SignIn() {
   }, []);
 
   const handleSubmit = (formData, values) => {
-    console.log(formData);
     setSent(true);
     dispatch(signinUsers(formData));
     setTimeout(() => {
@@ -80,7 +79,7 @@ function SignIn() {
               component="form"
               onSubmit={handleSubmit2}
               noValidate
-              sx={{ mt: 6 }}
+              sx={{ mt: 1 }}
             >
               <Field
                 autoComplete="email"

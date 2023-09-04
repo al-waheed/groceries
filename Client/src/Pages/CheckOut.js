@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../Actions/OrderAction";
 import Alert from "@mui/material/Alert";
-import { Loading, Error, Success } from '../Pages/AlertComponent'
+import { useNavigate } from "react-router-dom";
+import { Loading, Error, Success } from "../Pages/AlertComponent";
 import ThankYou from "./ThankYou";
 
 export default function CheckOut({ subTotal }) {
   const [showOrder, setShowOrder] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const orderstate = useSelector((state) => state.placeOrderReducer);
   const { loading, error, success } = orderstate;
 
@@ -17,6 +19,13 @@ export default function CheckOut({ subTotal }) {
     dispatch(placeOrder(token, subTotal));
     setShowOrder(true);
   };
+
+  useEffect(() => {
+    const isUserSignedIn = !!localStorage.getItem("currentUser");
+    if (!isUserSignedIn && !showOrder) {
+      navigate("/signin");
+    }
+  }, [showOrder, navigate]);
 
   return (
     <div>

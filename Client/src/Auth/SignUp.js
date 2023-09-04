@@ -82,7 +82,7 @@ function SignUp() {
               component="form"
               onSubmit={handleSubmit2}
               noValidate
-              sx={{ mt: 6 }}
+              sx={{ mt: 3 }}
             >
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>

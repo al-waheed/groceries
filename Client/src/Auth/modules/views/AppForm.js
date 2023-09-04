@@ -9,17 +9,17 @@ function AppForm(props) {
 
   return (
     <Box
-      sx={{
-        display: 'flex',
-        backgroundImage: 'url(/static/onepirate/appCurvyLines.png)',
-        backgroundRepeat: 'no-repeat',
-      }}
+      // sx={{
+      //   display: 'flex',
+      //   backgroundImage: 'url(/static/onepirate/appCurvyLines.png)',
+      //   backgroundRepeat: 'no-repeat',
+      // }}
     >
       <Container maxWidth="sm">
-        <Box sx={{ mt: 7, mb: 12 }}>
+        <Box sx={{ mt: 2 }}>
           <Paper
             background="light"
-            sx={{ py: { xs: 4, md: 8 }, px: { xs: 3, md: 6 } }}
+            sx={{ py: { xs: 4, md: 4 }, px: { xs: 3, md: 6 } }}
           >
             {children}
           </Paper>

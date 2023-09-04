@@ -7,6 +7,7 @@ import {
 } from "../Util/Style.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
@@ -20,19 +21,23 @@ export default function HeroSection() {
             <img
               src="/images/image.png"
               alt="icon"
-              style={{ width: "50px", marginTop: "15px"}}
+              style={{ width: "50px", marginTop: "15px" }}
             />
           </div>
           <MainTextStyle style={{ width: "570px", margin: "20px 0" }}>
             Groceries delivered in as little as
-            <span style={{ color: "#F54748", fontWeight: "500" }}> 2 hours</span>
+            <span style={{ color: "#F54748", fontWeight: "500" }}>
+               2 hours
+            </span>
           </MainTextStyle>
           <TextStyle style={{ width: "478px" }}>
             Grocen atssures fresh grocery every morning to your family without
             getting out in this pandemic.
           </TextStyle>
           <div className="flex mt-[60px]">
-            <ButtonStyle style={{ marginRight: "20px" }}>Order Now</ButtonStyle>
+            <ButtonStyle style={{ marginRight: "20px" }}>
+              <Link to="/signup">Order Now</Link>
+            </ButtonStyle>
             <ButtonStyle
               style={{
                 background: "transparent",

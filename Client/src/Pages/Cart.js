@@ -76,16 +76,16 @@ export default function Cart() {
                             height={100}
                             className="object-contain aspect-[2]"
                           />
-                          <span className="ml-4">
+                          <h3 className="ml-4">
                             {item.name} [{item.varients}]
-                          </span>
+                          </h3>
                         </div>
                       </TableCell>
                       <TableCell align="right">
                         ₦{item.prices[0][item.varients]}
                       </TableCell>
                       <TableCell align="right">
-                        <div className="flex items-center justify-between  p-2 border-[1px] border-[#F2F2F2] rounded-[43px]">
+                        <div className="flex items-center justify-between cursor-pointer p-2 border-[1px] border-[#F2F2F2] rounded-[43px]">
                           <div
                             className="w-[34px] h-[34px] bg-[#F2F2F2] rounded-full flex items-center 
 						  justify-center"
@@ -133,7 +133,7 @@ export default function Cart() {
                       <TableCell align="right">
                         <FontAwesomeIcon
                           icon={faCircleXmark}
-                          style={{ color: "#F54748", fontSize: "18px" }}
+                          style={{ color: "#F54748", fontSize: "18px", cursor:'pointer' }}
                           onClick={() => {
                             dispatch(deleteCartItems(item));
                           }}
