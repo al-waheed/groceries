@@ -12,13 +12,9 @@ const grocerySchema = mongoose.Schema(
   },
   {
     timestamps: true,
-
-    // Set the name of the MongoDB collection to "grocery".
     collection: "grocery",
   }
 );
-
-// Create a Mongoose model named "grocery" based on the defined schema.
+ 
 const groceryModel = mongoose.model("grocery", grocerySchema);
-
 module.exports = groceryModel;

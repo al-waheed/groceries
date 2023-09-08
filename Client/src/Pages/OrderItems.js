@@ -57,7 +57,6 @@ export default function OrderItems() {
                   CUSTOMER ADDRESS
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  {" "}
                   CUSTOMER ORDER INFO
                 </StyledTableCell>
               </TableRow>

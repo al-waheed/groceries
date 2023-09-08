@@ -43,8 +43,10 @@ router.post("/placeorder", async (req, res) => {
       });
       newOrder.save();
       res.send("Order Placed Successfully");
+      // res.status(202).json(newOrder)
     } else {
       res.send("Payment Failed");
+      // res.status(404).json(newOrder)
     }
   } catch (error) {
     return res.status(400).json({ message: error });
@@ -56,6 +58,7 @@ router.post("/getuserorders", async (req, res) => {
   try {
     const orders = await Order.find({ userid: userid }).sort({_id: -1});
     res.send(orders);
+    // res.status(202).json(orders)
   } catch (error) {
     return res.status(400).json({ message: "Something went wrong", error });
   }

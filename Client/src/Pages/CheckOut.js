@@ -15,7 +15,6 @@ export default function CheckOut({ subTotal }) {
   const { loading, error, success } = orderstate;
 
   const onToken = (token) => {
-    console.log(token);
     dispatch(placeOrder(token, subTotal));
     setShowOrder(true);
   };

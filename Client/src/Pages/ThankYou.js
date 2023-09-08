@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../Actions/CartActions";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -18,19 +18,23 @@ const style = {
 };
 
 export default function ThankYou() {
-  const [open, setOpen] = useState(true); // Initially open
+  const [open, setOpen] = useState(true);
+  const userState = useSelector((state) => state.signinUsersReducer);
+  const orderstate = useSelector((state) => state.getUserOrdersReducers);
+  const { orders } = orderstate;
+  const order = orders.map((order) => order.transactionId)
+  console.log(order)
+  const { currentUser } = userState;
   const dispatch = useDispatch();
 
-  // Function to close the modal
   const handleClose = () => setOpen(false);
 
-  // Effect to close the modal after a delay (e.g., 5 seconds)
   useEffect(() => {
     const timer = setTimeout(() => {
-      dispatch(clearCart()); // Clear the cart (you may need to adjust this logic)
-      handleClose(); // Close the modal
-    }, 5000); // Adjust the delay as needed (e.g., 5000 milliseconds = 5 seconds)
-    return () => clearTimeout(timer); // Clear the timer if the component unmounts
+      dispatch(clearCart()); 
+      handleClose();
+    }, 15000); 
+    return () => clearTimeout(timer); 
   }, [dispatch]);
 
   return (
@@ -43,13 +47,16 @@ export default function ThankYou() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Thank you so much for your order!
+           Hi {currentUser.firstName} {currentUser.lastName},
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <p>We really appreciate it. </p>
+            <p>Package with <b>{order}</b> will be deliver in the next 3days.</p>
             <p>
-              Enjoy <b>10%</b> off your next purchase with this coupon code:
-              <b>THANKYOU.</b>
+            We hope you enjoyed your shopping experience with us. If you have any 
+            problems with your item(s), You can react us on 0810-000-0000.
+            </p>
+            <p>
+            We will appreciate your feedback on Delivery Experience <b>THANK YOU</b>
             </p>
           </Typography>
         </Box>
