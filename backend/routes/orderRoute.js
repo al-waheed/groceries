@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { v4: uuidv4 } = require("uuid");
 const Order = require("../models/orderModel");
-const stripe = require("stripe")(
-  "sk_test_51IG4hAB84gCmikSTtPLbo8p7Pn1KPeyqJ2w2TbxYY8tbYm6u0oqqDlNwzOgOzUe44LwzwVnsb3vw12IJIrDwXXSV00G8HqLX1l"
-);
+const dotenv = require('dotenv');
+dotenv.config(); 
+const stripe = require("stripe")(process.env.STRIKE_API_KEY_TEST)
+ 
 
 router.post("/placeorder", async (req, res) => {
   const { token, subTotal, currentUser, cartItems } = req.body;
