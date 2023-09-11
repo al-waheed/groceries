@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const dotenv = require('dotenv');
 dotenv.config();
 
-const mongodbUrl = "mongodb+srv://ajisegirimorenikeji:olalekan@cluster0.uypagps.mongodb.net/mern-grocery" ;
+const mongodbUrl = process.env.MONGODB_CONNECTION
 
 mongoose.connect(mongodbUrl, { useUnifiedTopology: true, useNewUrlParser: true });
 
