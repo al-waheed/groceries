@@ -14,9 +14,3 @@ body{
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-/* [[redirect]]
-from = "/*"
-to = "/index.html"
-status = 200 */
