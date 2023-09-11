@@ -58,7 +58,7 @@ export default function HeroSection() {
         </div>
         <div className="w-[619px] h-auto" style={{ flex: "0 0 50%" }}>
           <img
-            src="/images/Header-image.png"
+            src="/images/Header-Image.png"
             alt="img"
             className="max-w-[none]"
           />
