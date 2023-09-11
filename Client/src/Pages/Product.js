@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { getAllGroceries } from "../Actions/GroceryAction";
 import Alert from "@mui/material/Alert";
-import { Loading, Error } from '../Pages/AlertComponent'
+import { Loading, Error } from "../Pages/AlertComponent";
 
 export default function Product() {
   const [showAll, setShowAll] = useState(false);
@@ -42,9 +42,10 @@ export default function Product() {
           <TextHeaderStyle>Our Products</TextHeaderStyle>
         </div>
         <div className="flex items-center justify-around flex-wrap">
-          {dataToShow.map((groceryItem) => {
-            return <Items key={groceryItem._id} items={groceryItem} />;
-          })}
+          {Array.isArray(dataToShow) &&
+            dataToShow.map((groceryItem) => {
+              return <Items key={groceryItem._id} items={groceryItem} />;
+            })}
         </div>
         <div className="flex justify-center">
           <ButtonStyle
