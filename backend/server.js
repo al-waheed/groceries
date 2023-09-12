@@ -1,5 +1,7 @@
 const express = require("express");
 const Grocery = require("./models/groceryModel");
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = express();
 const db = require("./db.js");
@@ -17,8 +19,8 @@ app.get("/", (req, res) => {
   res.send("Server working successfully");
 });
 
-const port = process.env.PORT || 8000;
+const PORT = process.env.PORT
 
-app.listen(port, () => {
-  console.log(`Server running on port:  ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

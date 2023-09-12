@@ -8,13 +8,7 @@ function AppForm(props) {
   const { children } = props;
 
   return (
-    <Box
-      // sx={{
-      //   display: 'flex',
-      //   backgroundImage: 'url(/static/onepirate/appCurvyLines.png)',
-      //   backgroundRepeat: 'no-repeat',
-      // }}
-    >
+    <Box>
       <Container maxWidth="sm">
         <Box sx={{ mt: 2 }}>
           <Paper
