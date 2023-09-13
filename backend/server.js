@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const Grocery = require("./models/groceryModel");
 const dotenv = require('dotenv');
 dotenv.config();
@@ -6,6 +7,7 @@ dotenv.config();
 const app = express();
 const db = require("./db.js");
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'build')));
 
 const groceriesRoute = require("./routes/groceryRoute");
 const usersRoute = require("./routes/userRoute");
@@ -16,6 +18,7 @@ app.use("/api/users/", usersRoute);
 app.use("/api/orders/", orderRoute);
 
 app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
   res.send("Server working successfully");
 });
 
