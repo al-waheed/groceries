@@ -1,4 +1,4 @@
-export const CartReducer = (state = { cartItems: [] }, action) => {
+export const cartReducer = (state = { cartItems: [] }, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
       const existingItems = state.cartItems.find(
@@ -33,5 +33,3 @@ export const CartReducer = (state = { cartItems: [] }, action) => {
       return state;
   }
 };
-
-// deleteCartItems

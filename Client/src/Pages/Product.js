@@ -11,6 +11,7 @@ import { Loading, Error } from "../Pages/AlertComponent";
 export default function Product() {
   const [showAll, setShowAll] = useState(false);
   const grocerystate = useSelector((state) => state.getAllGroceriesReducers);
+  const searchQuery = useSelector((state) => state.searchReducer.searchQuery);
   const { grocery, error, loading } = grocerystate;
 
   const dispatch = useDispatch();
@@ -29,13 +30,17 @@ export default function Product() {
     );
   }
 
-  const sixGroceries = grocery.slice(0, 8);
-  const dataToShow = showAll ? grocery : sixGroceries;
+  const filteredGroceries = grocery.filter((item) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const sixGroceries = filteredGroceries.slice(0, 8);
+  const dataToShow = showAll ? filteredGroceries : sixGroceries;
 
   return (
     <>
       <div className="bg-[#FEF5F5] py-[100px] px-14">
-        <div className="text-center mb-20 ">
+        <div className="text-center mb-20">
           <SubHeaderStyle style={{ marginBottom: "8px" }}>
             Categories
           </SubHeaderStyle>

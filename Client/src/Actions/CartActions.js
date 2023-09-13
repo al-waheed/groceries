@@ -21,17 +21,21 @@ export const addToCart =
       }
     }
 
-    const cartItems = getState().CartReducer.cartItems;
+    const cartItems = getState().cartReducer.cartItems;
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
 export const deleteCartItems = (items) => (dispatch, getState) => {
   dispatch({ type: "DELETE_FROM_CART", payload: items });
-  const cartItems = getState().CartReducer.cartItems;
+  const cartItems = getState().cartReducer.cartItems;
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
 export const clearCart = () => (dispatch) => {
   dispatch({ type: "CLEAR_CART" });
   localStorage.removeItem("cartItems");
+};
+
+export const setSearchQuery = (query) => (dispatch) => {
+  dispatch({ type: "SET_SEARCH_QUERY", payload: query });
 };

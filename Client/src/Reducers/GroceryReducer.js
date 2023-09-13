@@ -1,4 +1,4 @@
-export const getAllGroceriesReducers = (state = { grocery: [] }, action) => {
+const getAllGroceriesReducers = (state = { grocery: [] }, action) => {
   switch (action.type) {
     case "GET_GROCERIES_REQUEST":
       return {
@@ -19,3 +19,5 @@ export const getAllGroceriesReducers = (state = { grocery: [] }, action) => {
       return state;
   }
 };
+
+export default getAllGroceriesReducers;

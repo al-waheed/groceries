@@ -3,7 +3,7 @@ import axios from "axios";
 export const placeOrder = (token, subTotal) => async (dispatch, getState) => {
   dispatch({ type: "PLACE_ORDER_REQUEST" });
   const currentUser = getState().signinUsersReducer.currentUser;
-  const cartItems = getState().CartReducer.cartItems;
+  const cartItems = getState().cartReducer.cartItems;
 
   // Convert subTotal to cents and round it
   const subTotalInCents = Math.round(subTotal * 100);

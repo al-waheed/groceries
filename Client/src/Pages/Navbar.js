@@ -17,6 +17,7 @@ import Badge from "@mui/material/Badge";
 import { Link } from "react-router-dom";
 import { AppLogo } from "../Util/AppLogo";
 import { logOutUser } from "../Actions/UserActions";
+import { setSearchQuery } from "../Actions/CartActions"; 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -30,8 +31,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const Navbar = () => {
-  const cartState = useSelector((state) => state.CartReducer);
+  const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.signinUsersReducer);
+  const searchQuery = useSelector((state) => state.searchReducer.searchQuery);
   const { currentUser } = userState;
   const [nav, setNav] = useState(false);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -48,9 +50,14 @@ const Navbar = () => {
     setNav(!nav);
   };
 
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    dispatch(setSearchQuery(query)); // Dispatch the action to set the search query
+  };
+
   return (
     <div
-      className="flex justify-between items-center py-8 px-24 max-w-auto mx-auto"
+      className="flex justify-between sticky top-0 z-50 bg-white items-center py-8 px-24 max-w-auto mx-auto"
     >
       <h1 className="text-[#F55253] text-[28px] font-bold">
         <Link to="/">
@@ -70,6 +77,8 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="Search"
+            value={searchQuery}
+            onChange={handleSearchChange}
             className="h-14 w-80 text-[16px] font-medium outline-none pl-12 text-[#232323] 
             drop-shadow-md bg-[#Ffffff] rounded-lg"
           />

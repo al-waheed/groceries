@@ -24,7 +24,7 @@ import { addToCart, deleteCartItems, clearCart } from "../Actions/CartActions";
 import CheckOut from "./CheckOut";
 
 export default function Cart() {
-  const cartState = useSelector((state) => state.CartReducer);
+  const cartState = useSelector((state) => state.cartReducer);
   const cartItems = cartState.cartItems;
   const subTotal = cartItems.reduce((acc, item) => acc + item.price, 0);
   const dispatch = useDispatch();
