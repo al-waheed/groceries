@@ -59,7 +59,7 @@
     ]
   },
   "proxy": [
-    "http://localhost:8000/",
+    "https://localhost:8000/",
     "https://grocery-mongo-api.onrender.com"
   ],
   "devDependencies": {
