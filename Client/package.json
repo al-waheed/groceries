@@ -58,10 +58,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": [
-    "http://localhost:8000",
-    "https://grocery-mongo-api.onrender.com"
-  ],
+  "proxy": "http://localhost:8000",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.14.5",
     "dotenv-webpack": "^8.0.1",
