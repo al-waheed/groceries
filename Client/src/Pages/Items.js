@@ -66,9 +66,9 @@ export default function Items({ items }) {
           <div>
             <SmallHeaderStyle
               style={{
-                fontSize: "14px",
+                fontSize: "12px",
                 lineHeight: "20px",
-                color: "#676767",
+                color: "#9D9A9A",
                 marginBottom: "10px",
               }}
             >
@@ -79,8 +79,8 @@ export default function Items({ items }) {
               onChange={(e) => {
                 setVarient(e.target.value);
               }}
-              className="rounded-md text-[15px] w-[110px] text-[#F54748] 
-			            outline-none h-7 border-[1.5px] border-[#F54748] px-1"
+              className="rounded-md text-[12px] w-[110px] text-[#F54748] 
+			            outline-none h-7 border-[1.5px] border-[#FEF5F5] px-1"
             >
               {items.varients.map((varient) => {
                 return <option value={varient}>{varient}</option>;
@@ -90,9 +90,9 @@ export default function Items({ items }) {
           <div>
             <SmallHeaderStyle
               style={{
-                fontSize: "14px",
+                fontSize: "12px",
                 lineHeight: "20px",
-                color: "#676767",
+                color: "#9D9A9A",
                 marginBottom: "10px",
               }}
             >
@@ -103,8 +103,8 @@ export default function Items({ items }) {
               onChange={(e) => {
                 setQuantity(e.target.value);
               }}
-              className="rounded-md text-[15px] text-[#F54748] w-[110px] 
-			            outline-none h-7 border-[1.5px] border-[#F54748] px-1"
+              className="rounded-md text-[12px] text-[#F54748] w-[110px] 
+			            outline-none h-7 border-[1.5px] border-[#FEF5F5] px-1"
             >
               {[...Array(10).keys()].map((x, i) => {
                 return <option value={i + 1}>{i + 1}</option>;
@@ -114,10 +114,10 @@ export default function Items({ items }) {
         </div>
         <hr />
         <div className="flex justify-between items-center">
-          <SmallHeaderStyle style={{ fontSize: "17px", color: "#F54748" }}>
+          <SmallHeaderStyle style={{ fontSize: "15px", color: "#F54748" }}>
             ₦{(items.prices[0][varient] * quantity).toFixed(2)}
           </SmallHeaderStyle>
-          <SmallButtonStyle style={{ fontSize: "12px" }} onClick={addtocart}>
+          <SmallButtonStyle onClick={addtocart}>
             Add To Cart
           </SmallButtonStyle>
         </div>

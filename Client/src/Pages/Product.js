@@ -11,7 +11,7 @@ import { Loading, Error } from "../Pages/AlertComponent";
 export default function Product() {
   const [showAll, setShowAll] = useState(false);
   const grocerystate = useSelector((state) => state.getAllGroceriesReducers);
-  const searchQuery = useSelector((state) => state.searchReducer.searchQuery);
+  const searchItem = useSelector((state) => state.searchItemReducer.searchItem);
   const { grocery, error, loading } = grocerystate;
 
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ export default function Product() {
   }
 
   const filteredGroceries = grocery.filter((item) =>
-    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+    item.name.toLowerCase().includes(searchItem.toLowerCase())
   );
 
   const sixGroceries = filteredGroceries.slice(0, 8);

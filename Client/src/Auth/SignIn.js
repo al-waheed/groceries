@@ -12,12 +12,12 @@ import FormFeedback from "./modules/form/FormFeedback";
 import withRoot from "./modules/withRoot";
 import { useDispatch, useSelector } from "react-redux";
 import { signinUsers } from "../Actions/UserActions";
-import { Loading, Error } from "../Pages/AlertComponent";
+import { Error } from "../Pages/AlertComponent";
 
 function SignIn() {
   const [sent, setSent] = useState(false);
   const signinState = useSelector((state) => state.signinUsersReducer);
-  const { error, loading } = signinState;
+  const { error } = signinState;
 
   const dispatch = useDispatch();
 
@@ -61,7 +61,6 @@ function SignIn() {
             <Link href="/signup" align="center" underline="always">
               Sign Up here
             </Link>
-            {loading && <Loading />}
             {error && (
               <Error
                 error={<Alert severity="error">invalid Credentials</Alert>}

@@ -36,6 +36,6 @@ export const clearCart = () => (dispatch) => {
   localStorage.removeItem("cartItems");
 };
 
-export const setSearchQuery = (query) => (dispatch) => {
-  dispatch({ type: "SET_SEARCH_QUERY", payload: query });
+export const itemSearchQuery = (item) => (dispatch) => {
+  dispatch({ type: "ITEM_SEARCH_QUERY", payload: item });
 };

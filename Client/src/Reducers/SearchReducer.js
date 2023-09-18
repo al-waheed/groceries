@@ -1,13 +1,13 @@
-const searchReducer = (state = { searchQuery: "" }, action) => {
+const searchItemReducer = (state = { searchItem: "" }, action) => {
   switch (action.type) {
-    case "SET_SEARCH_QUERY":
+    case "ITEM_SEARCH_QUERY":
       return {
         ...state,
-        searchQuery: action.payload,
+        searchItem: action.payload,
       };
     default:
       return state;
   }
 };
 
-export default searchReducer;
+export default searchItemReducer;

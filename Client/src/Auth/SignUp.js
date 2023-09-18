@@ -13,12 +13,12 @@ import FormFeedback from "./modules/form/FormFeedback";
 import withRoot from "./modules/withRoot";
 import { useDispatch, useSelector } from "react-redux";
 import { signupUsers } from "../Actions/UserActions";
-import { Loading, Success, Error } from "../Pages/AlertComponent";
+import { Success, Error } from "../Pages/AlertComponent";
 
 function SignUp() {
   const [sent, setSent] = React.useState(false);
   const signupState = useSelector((state) => state.signupUsersReducer);
-  const { error, success, loading } = signupState;
+  const { error, success } = signupState;
 
   const validate = (values) => {
     const errors = required(
@@ -32,7 +32,6 @@ function SignUp() {
         errors.email = emailError;
       }
     }
-
     return errors;
   };
 
@@ -43,7 +42,7 @@ function SignUp() {
     setTimeout(() => {
       setSent(false);
       values.reset();
-    }, 2000);
+    }, 1000);
   };
 
   return (
@@ -57,7 +56,6 @@ function SignUp() {
             <Link href="/signin" underline="always">
               Already have an account?
             </Link>
-            {loading && <Loading />}
             {success && (
               <Success
                 success={

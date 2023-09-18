@@ -26,9 +26,7 @@ export default function HeroSection() {
           </div>
           <MainTextStyle style={{ width: "570px", margin: "20px 0" }}>
             Groceries delivered in as little as
-            <span style={{ color: "#F54748", fontWeight: "500" }}>
-               2 hours
-            </span>
+            <span style={{ color: "#F54748", fontWeight: "500" }}> 2 hours</span>
           </MainTextStyle>
           <TextStyle style={{ width: "478px" }}>
             Grocen atssures fresh grocery every morning to your family without
