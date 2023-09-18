@@ -79,7 +79,7 @@ export default function Items({ items }) {
               onChange={(e) => {
                 setVarient(e.target.value);
               }}
-              className="rounded-md text-[12px] w-[110px] text-[#F54748] 
+              className="rounded-md text-[12px] w-[110px] text-[#F54748] capitalize
 			            outline-none h-7 border-[1.5px] border-[#FEF5F5] px-1"
             >
               {items.varients.map((varient) => {

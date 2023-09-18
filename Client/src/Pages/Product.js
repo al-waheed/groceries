@@ -47,28 +47,34 @@ export default function Product() {
           <TextHeaderStyle>Our Products</TextHeaderStyle>
         </div>
         <div className="flex items-center justify-around flex-wrap">
-          {Array.isArray(dataToShow) &&
+          {filteredGroceries.length === 0 ? (
+            <p>No items matching your search criteria found.</p>
+          ) : (
+            Array.isArray(dataToShow) &&
             dataToShow.map((groceryItem) => {
               return <Items key={groceryItem._id} items={groceryItem} />;
-            })}
+            })
+          )}
         </div>
-        <div className="flex justify-center">
-          <ButtonStyle
-            onClick={() => setShowAll(!showAll)}
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              padding: "20px 25px",
-            }}
-          >
-            {showAll ? "Load Less" : `Load More`}
-            <FontAwesomeIcon
-              icon={faArrowAltCircleRight}
-              className="text-[#fff] text-[20px]"
-            />
-          </ButtonStyle>
-        </div>
+        {!searchItem && (
+          <div className="flex justify-center">
+            <ButtonStyle
+              onClick={() => setShowAll(!showAll)}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                padding: "20px 25px",
+              }}
+            >
+              {showAll ? "Load Less" : "Load More"}
+              <FontAwesomeIcon
+                icon={faArrowAltCircleRight}
+                className="text-[#fff] text-[20px]"
+              />
+            </ButtonStyle>
+          </div>
+        )}
       </div>
     </>
   );
