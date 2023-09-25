@@ -5,16 +5,17 @@ import {
   ButtonStyle2,
   SubHeaderStyle,
 } from "../Util/Style.js";
+import { Link } from "react-router-dom";
 
 export default function SecondFeature() {
   return (
     <>
-      <div className="flex justify-evenly items-center ml-10 mb-10">
+      <div className="flex justify-evenly items-center bg-[#FEF5F5]">
         <div>
           <SubHeaderStyle
             style={{
               marginBottom: "8px",
-              color: "#F9BA45",
+              color: "#F54748",
               fontWeight: "500",
             }}
           >
@@ -28,9 +29,9 @@ export default function SecondFeature() {
             blanditiis praesentium voluptatum deleniti atque corrupti quos
           </TextStyle>
           <div className="flex mt-[50px]">
-            <ButtonStyle2>
-              Explore Now
-            </ButtonStyle2>
+            <Link to="/">
+              <ButtonStyle2>Keep Shopping</ButtonStyle2>
+            </Link>
           </div>
         </div>
         <div className="w-[664px] h-auto" style={{ flex: "0 0 10%" }}>

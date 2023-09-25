@@ -50,7 +50,7 @@ export default function HeroSection() {
                 icon={faPlayCircle}
                 className="text-[#363636] text-[50px]"
               />
-              Order Process
+              See All Grocery
             </ButtonStyle>
           </div>
         </div>

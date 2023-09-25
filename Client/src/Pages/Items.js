@@ -7,7 +7,7 @@ import {
   TextStyle,
 } from "../Util/Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Actions/CartActions";
 import Box from "@mui/material/Box";
@@ -118,7 +118,7 @@ export default function Items({ items }) {
             ₦{(items.prices[0][varient] * quantity).toFixed(2)}
           </SmallHeaderStyle>
           <SmallButtonStyle onClick={addtocart}>
-            Add To Cart
+            <FontAwesomeIcon icon={faPlus} />
           </SmallButtonStyle>
         </div>
         <Modal open={open} onClose={handleClose}>

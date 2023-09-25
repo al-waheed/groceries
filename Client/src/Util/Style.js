@@ -35,15 +35,15 @@ export const ButtonStyle2 = Styled.button`
 `;
 
 export const SmallButtonStyle = Styled.button`
-  padding: 6px 12px 6px 12px;
-  font-size: 12px;
+  padding: 9px 14px 9px 14px;
+  font-size: 15px;
   border-radius: 6px;
-  font-weight: 500;
+  font-weight: 700;
   color: #ffffff;
   transition: 0.3s;
-  background: #FEF5F5;
+  background: ${color.ORANGE};
   &:hover{
-    background: ${(props) => props.background || color.ORANGE};
+   color: #9D9A9A;
   }
 `;
 

@@ -9,7 +9,7 @@ import {
 export default function Feature() {
   return (
     <>
-        <div className="flex justify-evenly items-center bg-[#FEF5F5]">
+        <div className="flex justify-evenly items-center mb-20">
           <div className="w-[664px] h-auto" style={{ flex: "0 0 50%" }}>
             <img
               src="/images/imageandcard.png"

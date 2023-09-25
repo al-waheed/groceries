@@ -22,6 +22,7 @@ import Paper from "@mui/material/Paper";
 import Footer from "./Footer";
 import { addToCart, deleteCartItems, clearCart } from "../Actions/CartActions";
 import CheckOut from "./CheckOut";
+import SecondFeature from "./SecondFeature";
 
 export default function Cart() {
   const cartState = useSelector((state) => state.cartReducer);
@@ -196,10 +197,11 @@ export default function Cart() {
             </div>
           </div>
         ) : (
-          <SubHeaderStyle style={{ textAlign: "center", margin: "50px 0" }}>
+          <SubHeaderStyle style={{ textAlign: "center", margin: "100px 0" }}>
             Your Cart is Empty
           </SubHeaderStyle>
         )}
+        <SecondFeature/>
         <Footer />
       </div>
     </>

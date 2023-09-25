@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../Actions/CartActions";
+import { FireWorks } from "../Util/FireWorks";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
@@ -22,8 +23,7 @@ export default function ThankYou() {
   const userState = useSelector((state) => state.signinUsersReducer);
   const orderstate = useSelector((state) => state.getUserOrdersReducers);
   const { orders } = orderstate;
-  const order = orders.map((order) => order.transactionId)
-  console.log(order)
+  const order = orders.map((order) => order.transactionId);
   const { currentUser } = userState;
   const dispatch = useDispatch();
 
@@ -31,10 +31,11 @@ export default function ThankYou() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      dispatch(clearCart()); 
+      dispatch(clearCart());
       handleClose();
-    }, 15000); 
-    return () => clearTimeout(timer); 
+      FireWorks();
+    }, 15000);
+    return () => clearTimeout(timer);
   }, [dispatch]);
 
   return (
@@ -47,17 +48,19 @@ export default function ThankYou() {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-           Hi {currentUser.firstName} {currentUser.lastName},
+            Hi {currentUser.firstName} {currentUser.lastName},
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            <p>Package with <b>{order}</b> will be deliver in the next 3days.</p>
             <p>
-            We hope you enjoyed your shopping experience with us. If you have any 
-            problems with your item(s), You can react us on 0810-000-0000.
+              Package with <b>{order}</b> will be deliver in the next 3days.
             </p>
             <p>
-            We will appreciate your feedback on Delivery Experience <b>THANK YOU</b>
+              We will appreciate your feedback on Delivery Experience
+              <a className="" href="mailto:orders@grocery.com">
+                groceryorder@gmailcom
+              </a>
             </p>
+            <h2>Thank you for you order</h2>
           </Typography>
         </Box>
       </Modal>
