@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import {
-  SmallButtonStyle,
   SubHeaderStyle,
   SmallHeaderStyle,
   CategoryButtonStyle,
   TextStyle,
 } from "../Util/Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCircleCheck, faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Actions/CartActions";
 import Box from "@mui/material/Box";
@@ -43,23 +43,46 @@ export default function Items({ items }) {
     <>
       <div
         className="flex flex-col justify-between w-[300px] 
-	      h-[440px] bg-white rounded-xl p-5 mb-8 hover:shadow-lg"
+	      h-[440px] bg-white rounded-xl p-5 mb-8"
       >
-        <Tooltip title="Click to view item features">
+        <div className="flex items-center justify-between">
+          <CategoryButtonStyle>{items.category}</CategoryButtonStyle>
+        </div>
+        <div className="w-[150px] h-[170px] mx-auto flex items-start">
+          <img
+            src={items.images}
+            alt="item_img"
+            className="w-[150px] object-contain aspect-[3/4]"
+          />
           <div>
-            <CategoryButtonStyle onClick={handleOpen}>
-              {items.category}
-            </CategoryButtonStyle>
-          </div>
-          <div className="w-[150px] h-[170px] mx-auto " onClick={handleOpen}>
-            <img
-              src={items.images}
-              alt="item_img"
-              className="w-[150px] object-contain aspect-[3/4] cursor-pointer"
+            <FontAwesomeIcon
+              icon={faHeart}
+              className="text-[#606061] ml-9 text-[22px] cursor-pointer hover:text-[#313133]"
+              onClick={handleOpen}
             />
+            <Tooltip title="Click to view item features">
+              <FontAwesomeIcon
+                icon={faEye}
+                className="text-[#606061] ml-9 text-[22px] my-7 cursor-pointer hover:text-[#313133]"
+                onClick={handleOpen}
+              />
+            </Tooltip>
+            <Tooltip title="Add item to cart">
+              <FontAwesomeIcon
+                icon={faCartPlus}
+                className="text-[#606061] ml-9 text-[22px] cursor-pointer hover:text-[#313133]"
+                onClick={addtocart}
+              />
+            </Tooltip>
           </div>
-        </Tooltip>
-        <SubHeaderStyle style={{ fontWeight: "600" }}>
+        </div>
+        <SubHeaderStyle
+          style={{
+            fontSize: "15px",
+            fontWeight: "400",
+            color: "#313133",
+          }}
+        >
           {items.name}
         </SubHeaderStyle>
         <div className="flex justify-between items-center">
@@ -67,9 +90,9 @@ export default function Items({ items }) {
             <SmallHeaderStyle
               style={{
                 fontSize: "12px",
-                lineHeight: "20px",
-                color: "#9D9A9A",
-                marginBottom: "10px",
+                fontWeight: "300",
+                color: "#313133",
+                marginBottom: "5px",
               }}
             >
               Varients
@@ -91,9 +114,9 @@ export default function Items({ items }) {
             <SmallHeaderStyle
               style={{
                 fontSize: "12px",
-                lineHeight: "20px",
-                color: "#9D9A9A",
-                marginBottom: "10px",
+                fontWeight: "300",
+                color: "#313133",
+                marginBottom: "5px",
               }}
             >
               Quantity
@@ -112,14 +135,14 @@ export default function Items({ items }) {
             </select>
           </div>
         </div>
-        <hr />
+        <hr style={{ marginBottom: "-10px" }} />
         <div className="flex justify-between items-center">
-          <SmallHeaderStyle style={{ fontSize: "15px", color: "#F54748" }}>
+          <SmallHeaderStyle style={{ fontSize: "15px", color: "#313133" }}>
             ₦{(items.prices[0][varient] * quantity).toFixed(2)}
           </SmallHeaderStyle>
-          <SmallButtonStyle onClick={addtocart}>
-            <FontAwesomeIcon icon={faPlus} />
-          </SmallButtonStyle>
+          <SmallHeaderStyle style={{ fontSize: "16px", color: "#F54748" }}>
+            <s> -25% </s>
+          </SmallHeaderStyle>
         </div>
         <Modal open={open} onClose={handleClose}>
           <Box sx={style} className="outline-none">

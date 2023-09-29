@@ -7,6 +7,7 @@ import {
   faXmark,
   faBasketShopping,
 } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -56,60 +57,70 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-between sticky top-0 z-50 bg-white items-center py-8 px-24 max-w-auto mx-auto">
-      <h1 className="text-[#F55253] text-[28px] font-bold">
-        <Link to="/">
-          <AppLogo />
-        </Link>
-      </h1>
-      <div className="hidden lg:flex items-center cursor-pointer">
-        <ul className="flex items-center font-medium text-base text-[#4D4D4D]">
-          <li className="px-6 text-[#F55253]">
-            <Link to="/"> Home </Link>
-          </li>
-          <li className="px-6">Menu</li>
-          <li className="px-6">Service</li>
-          <li className="px-6">Shop</li>
-        </ul>
-        <div className="ml-24 relative">
-          <input
-            type="text"
-            placeholder="Search"
-            value={searchItem}
-            onChange={handleSearchChange}
-            className="h-14 w-80 text-[16px] font-medium outline-none pl-12 text-[#232323] 
-            drop-shadow-md bg-[#Ffffff] rounded-lg"
-          />
-          <div className="absolute top-1/2 -translate-y-1/2 left-5">
+    <div className="sticky top-0 z-50">
+      <div className="flex justify-center py-4 bg-[#FDECEC]">
+        <div
+          className="flex items-center justify-between h-11 w-[50%] text-[15px] font-medium 
+                 outline-none pl-12 text-[#878686] drop-shadow-md bg-[#Ffffff] rounded-lg"
+        >
+          <div className="">
             <FontAwesomeIcon
               icon={faSearch}
               className="text-[#8B8B8B] text-[16px]"
             />
           </div>
-          <div className="flex items-center absolute top-1/2 -translate-y-1/2 right-3">
-            <div
-              className="h-7 w-[1px]"
-              style={{ border: "1px solid #F2F2F2" }}
-            ></div>
-            <Link to="/cart">
-              <StyledBadge badgeContent={cartState.cartItems.length}>
-                <FontAwesomeIcon
-                  icon={faBasketShopping}
-                  beatFade
-                  className="text-[#3c3737] text-[25px] ml-3"
-                />
-              </StyledBadge>
-            </Link>
-          </div>
+          <input
+            type="text"
+            placeholder="Search Product..."
+            value={searchItem}
+            onChange={handleSearchChange}
+            className="border-none outline-none ml-5 w-full"
+          />
         </div>
-        <div className="ml-9">
+        <div className="flex items-center">
+          <Link to="/cart">
+            <StyledBadge>
+              <FontAwesomeIcon
+                icon={faHeart}
+                className="text-[#151414] text-[25px] ml-3"
+              />
+            </StyledBadge>
+          </Link>
+          <Link to="/cart">
+            <StyledBadge badgeContent={cartState.cartItems.length}>
+              <FontAwesomeIcon
+                icon={faBasketShopping}
+                beatFade
+                className="text-[#3c3737] text-[25px] ml-3"
+              />
+            </StyledBadge>
+          </Link>
+        </div>
+      </div>
+      <div className="flex justify-between bg-[#fff] items-center py-4 px-16 max-w-auto mx-auto">
+        <h1 className="text-[#F55253] text-[28px] font-bold">
+          <Link to="/">
+            <AppLogo />
+          </Link>
+        </h1>
+        <div className="hidden lg:flex items-center cursor-pointer">
+          <ul className="flex items-center font-medium text-base text-[#4D4D4D]">
+            <li className="px-6 text-[#F55253]">
+              <Link to="/"> Home </Link>
+            </li>
+            <li className="px-6">Menu</li>
+            <li className="px-6">Service</li>
+            <li className="px-6">Shop</li>
+          </ul>
+        </div>
+        <div className="flex items-center">
           {currentUser ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open menu">
                 <Typography
                   onClick={handleOpenUserMenu}
                   sx={{ p: 0 }}
-                  className="text-[#4D4D4D] font-medium"
+                  className="text-[#262626] font-medium"
                 >
                   welcome, {currentUser.firstName}
                   <ArrowDropDownIcon className="text-[#F55253]" />
@@ -158,18 +169,18 @@ const Navbar = () => {
               <Link to="/signin">Log In</Link>
             </h6>
           )}
-        </div>
-        {!currentUser && (
-          <div>
-            <button
-              className="w-full px-8 py-3 bg-[#FDECEC] font-semibold 
+          {!currentUser && (
+            <div>
+              <button
+                className="px-8 py-3 bg-[#FDECEC] font-semibold 
             border-white border-[1px] text-[#F55253] rounded-[5px]
             hover:border-[#F55253] hover:border-[1px]"
-            >
-              <Link to="/signup">Sign Up</Link>
-            </button>
-          </div>
-        )}
+              >
+                <Link to="/signup">Sign Up</Link>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
       <div onClick={handleNav} className="block lg:hidden">
         {!nav ? (
@@ -209,6 +220,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
+    // </div>
   );
 };
 

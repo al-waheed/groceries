@@ -6,7 +6,7 @@ import {AppLogo} from "../Util/AppLogo";
 export default function Footer() {
   return (
     <>
-      <div className="pt-24 px-28">
+      <div className="pt-10 px-16">
         <div className="flex justify-between items-start">
           <div className="mr-44">
             <h1 className="text-[#F55253] text-[28px] font-bold mb-6">
@@ -73,9 +73,9 @@ export default function Footer() {
             </TextStyle>
           </div>
         </div>
-        <div className="mt-20">
-          <hr />
-          <div className="flex justify-between items-center py-4">
+        <div className="mt-14">
+          <hr/>
+          <div className="flex justify-between items-center py-3">
             <SmallTextStyle style={{ color: "#8C8C8C", lineHeight: "24px" }}>
               All Rights Reserved @MORENIKEJI 2023
             </SmallTextStyle>

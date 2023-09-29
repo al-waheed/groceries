@@ -5,7 +5,7 @@ export const ButtonStyle = Styled.button`
   width: 186px;
   height: 70px;
   background: ${(props) => props.background || color.ORANGE};
-  border-radius: 12px;
+  border-radius: 8px;
   font-weight: 500;
   font-size: 20px;
   line-height: 20px;
@@ -35,15 +35,15 @@ export const ButtonStyle2 = Styled.button`
 `;
 
 export const SmallButtonStyle = Styled.button`
-  padding: 9px 14px 9px 14px;
-  font-size: 15px;
+  padding: 8px 12px 8px 12px;
+  font-size: 17px;
   border-radius: 6px;
   font-weight: 700;
   color: #ffffff;
   transition: 0.3s;
   background: ${color.ORANGE};
   &:hover{
-   color: #9D9A9A;
+   font-size: 19px;
   }
 `;
 

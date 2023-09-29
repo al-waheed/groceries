@@ -19,7 +19,7 @@ const style = {
 };
 
 export default function ThankYou() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const userState = useSelector((state) => state.signinUsersReducer);
   const orderstate = useSelector((state) => state.getUserOrdersReducers);
   const { orders } = orderstate;
@@ -33,7 +33,7 @@ export default function ThankYou() {
     const timer = setTimeout(() => {
       dispatch(clearCart());
       handleClose();
-      FireWorks();
+      FireWorks()
     }, 15000);
     return () => clearTimeout(timer);
   }, [dispatch]);
