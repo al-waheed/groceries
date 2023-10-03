@@ -42,8 +42,8 @@ export default function Items({ items }) {
   return (
     <>
       <div
-        className="flex flex-col justify-between w-[300px] 
-	      h-[440px] bg-white rounded-xl p-5 mb-8"
+        className="flex flex-col justify-between w-[250px] 
+	      h-[400px] bg-white rounded-xl p-3 mb-5"
       >
         <div className="flex items-center justify-between">
           <CategoryButtonStyle>{items.category}</CategoryButtonStyle>
@@ -57,20 +57,20 @@ export default function Items({ items }) {
           <div>
             <FontAwesomeIcon
               icon={faHeart}
-              className="text-[#606061] ml-9 text-[22px] cursor-pointer hover:text-[#313133]"
+              className="text-[#606061] ml-4 text-[20px] cursor-pointer hover:text-[#313133]"
               onClick={handleOpen}
             />
             <Tooltip title="Click to view item features">
               <FontAwesomeIcon
                 icon={faEye}
-                className="text-[#606061] ml-9 text-[22px] my-7 cursor-pointer hover:text-[#313133]"
+                className="text-[#606061] ml-4 text-[20px] my-7 cursor-pointer hover:text-[#313133]"
                 onClick={handleOpen}
               />
             </Tooltip>
             <Tooltip title="Add item to cart">
               <FontAwesomeIcon
                 icon={faCartPlus}
-                className="text-[#606061] ml-9 text-[22px] cursor-pointer hover:text-[#313133]"
+                className="text-[#606061] ml-4 text-[20px] cursor-pointer hover:text-[#313133]"
                 onClick={addtocart}
               />
             </Tooltip>

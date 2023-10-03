@@ -22,10 +22,10 @@ import { itemSearchQuery } from "../Actions/CartActions";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
-    right: -3,
-    top: -10,
-    border: `4px solid #F54B4B`,
-    padding: "0 4px",
+    right: 4,
+    top: 2,
+    border: `1px solid #FDECEC`,
+    padding: "0 3px",
     color: "white",
     background: "#F54748",
   },
@@ -61,7 +61,7 @@ const Navbar = () => {
       <div className="flex justify-center py-4 bg-[#FDECEC]">
         <div
           className="flex items-center justify-between h-11 w-[50%] text-[15px] font-medium 
-                 outline-none pl-12 text-[#878686] drop-shadow-md bg-[#Ffffff] rounded-lg"
+                 outline-none pl-12 text-[#878686] drop-shadow-md bg-[#ffffff] rounded-lg"
         >
           <div className="">
             <FontAwesomeIcon
@@ -97,7 +97,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-      <div className="flex justify-between bg-[#fff] items-center py-4 px-16 max-w-auto mx-auto">
+      <div className="flex justify-between bg-[#fff] items-center py-5 px-16 max-w-auto mx-auto">
         <h1 className="text-[#F55253] text-[28px] font-bold">
           <Link to="/">
             <AppLogo />
@@ -108,9 +108,15 @@ const Navbar = () => {
             <li className="px-6 text-[#F55253]">
               <Link to="/"> Home </Link>
             </li>
-            <li className="px-6">Menu</li>
-            <li className="px-6">Service</li>
-            <li className="px-6">Shop</li>
+            <li className="px-6">
+              <Link to="/"> Menu </Link>
+            </li>
+            <li className="px-6">
+              <Link to="/allproducts"> Products </Link>
+            </li>
+            <li className="px-6">
+              <Link to="/faq"> FAQ </Link>
+            </li>
           </ul>
         </div>
         <div className="flex items-center">
@@ -172,9 +178,9 @@ const Navbar = () => {
           {!currentUser && (
             <div>
               <button
-                className="px-8 py-3 bg-[#FDECEC] font-semibold 
-            border-white border-[1px] text-[#F55253] rounded-[5px]
-            hover:border-[#F55253] hover:border-[1px]"
+                className="px-5 py-2.5 text-[#FDECEC] font-semibold 
+            border-white border-[1px] bg-[#F54748] rounded-[6px]
+            hover:bg-[#FDECEC]  hover:text-[#F54748] hover:border-[#F54748]"
               >
                 <Link to="/signup">Sign Up</Link>
               </button>

@@ -9,10 +9,9 @@ import {
 export default function Feature() {
   return (
     <>
-    {/* border-[1px] border-[#F54748] */}
       <div
         className="flex justify-between items-center
-           mx-16 my-10"
+           mx-16 my-10 bg-[#F54748] p-5 rounded-lg"
       >
         <div className="flex items-center py-10 px-6 bg-white rounded-lg">
           <div>

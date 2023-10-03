@@ -71,7 +71,7 @@ export default function Service() {
           </div>
           <div className="ml-[-10px]">
             <SmallHeaderStyle style={{ fontSize: "16px" }}>
-              15 days returns
+              5 days returns
             </SmallHeaderStyle>
             <TextStyle
               style={{

@@ -34,7 +34,7 @@ export default function Product() {
     item.name.toLowerCase().includes(searchItem.toLowerCase())
   );
 
-  const sixGroceries = filteredGroceries.slice(0, 8);
+  const sixGroceries = filteredGroceries.slice(0, 10);
   const dataToShow = showAll ? filteredGroceries : sixGroceries;
 
   return (
@@ -57,7 +57,7 @@ export default function Product() {
           )}
         </div>
         {!searchItem && (
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-5">
             <ButtonStyle
               onClick={() => setShowAll(!showAll)}
               style={{
