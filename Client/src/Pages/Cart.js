@@ -32,16 +32,16 @@ export default function Cart() {
   return (
     <>
       <div>
-        <div className="relative">
+        <div className="h-[200px] w-screen mb-32">
           <img
             src="/images/BannerandImage.png"
             alt="cart_img"
-            className="h-[250px] w-screen"
+            className="h-200px"
           />
-          <div className="text-center absolute top-1/2 -translate-y-[20%] inset-0">
+        </div>
+        <div className="text-center">
             <TextHeaderStyle>My Shopping Cart</TextHeaderStyle>
           </div>
-        </div>
         {cartItems.length ? (
           <div className="flex items-start justify-evenly py-16 px-10">
             <TableContainer

@@ -30,9 +30,9 @@ export default function Product() {
     );
   }
 
-  const filteredGroceries = grocery.filter((item) =>
-    item.name.toLowerCase().includes(searchItem.toLowerCase())
-  );
+  const filteredGroceries = grocery.filter((item) => {
+    return item.name.toLowerCase().includes(searchItem.toLowerCase());
+  });
 
   const sixGroceries = filteredGroceries.slice(0, 10);
   const dataToShow = showAll ? filteredGroceries : sixGroceries;
@@ -46,9 +46,9 @@ export default function Product() {
           </SubHeaderStyle>
           <TextHeaderStyle>Our Products</TextHeaderStyle>
         </div>
-        <div className="flex items-center justify-between flex-wrap">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {filteredGroceries.length === 0 ? (
-            <p>No items matching your search criteria found.</p>
+            <p>No result for your search criteria.</p>
           ) : (
             Array.isArray(dataToShow) &&
             dataToShow.map((groceryItem) => {

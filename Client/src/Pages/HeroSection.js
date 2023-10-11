@@ -54,7 +54,7 @@ export default function HeroSection() {
             </ButtonStyle>
           </div>
         </div>
-        <div className="w-[619px] h-auto" style={{ flex: "0 0 50%" }}>
+        <div className="w-[700px] h-auto" style={{ flex: "0 0 50%" }}>
           <img
             src="/images/Header-Image.png"
             alt="img"

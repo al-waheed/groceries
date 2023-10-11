@@ -1,24 +1,34 @@
-import React, { useState } from "react";
+import { Fragment } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+// import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import {
   faSearch,
-  faBars,
-  faXmark,
   faBasketShopping,
+  faChevronDown,
+  faUserPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import Tooltip from "@mui/material/Tooltip";
 import Badge from "@mui/material/Badge";
 import { Link } from "react-router-dom";
 import { AppLogo } from "../Util/AppLogo";
+import { styled } from "@mui/material/styles";
 import { logOutUser } from "../Actions/UserActions";
 import { itemSearchQuery } from "../Actions/CartActions";
+import Banner from "./Banners";
+
+const navigation = [
+  { name: "Home", to: "/", current: true },
+  { name: "Menu", to: "/", current: false },
+  { name: "Products", to: "/allproducts", current: false },
+  { name: "FAQ", to: "/faq", current: false },
+];
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -31,203 +41,265 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const Navbar = () => {
+export default function Navbar() {
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.signinUsersReducer);
   const searchItem = useSelector((state) => state.searchItemReducer.searchItem);
   const { currentUser } = userState;
-  const [nav, setNav] = useState(false);
-  const [anchorElUser, setAnchorElUser] = useState(null);
+
   const dispatch = useDispatch();
 
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
-  const handleNav = () => {
-    setNav(!nav);
-  };
-
   const handleSearchChange = (e) => {
-    const value = e.target.value;
-    dispatch(itemSearchQuery(value));
+    dispatch(itemSearchQuery(e.target.value));
   };
 
   return (
-    <div className="sticky top-0 z-50">
-      <div className="flex justify-center py-4 bg-[#FDECEC]">
-        <div
-          className="flex items-center justify-between h-11 w-[50%] text-[15px] font-medium 
-                 outline-none pl-12 text-[#878686] drop-shadow-md bg-[#ffffff] rounded-lg"
-        >
-          <div className="">
-            <FontAwesomeIcon
-              icon={faSearch}
-              className="text-[#8B8B8B] text-[16px]"
-            />
-          </div>
-          <input
-            type="text"
-            placeholder="Search Product..."
-            value={searchItem}
-            onChange={handleSearchChange}
-            className="border-none outline-none ml-5 w-full"
-          />
-        </div>
-        <div className="flex items-center">
-          <Link to="/cart">
-            <StyledBadge>
-              <FontAwesomeIcon
-                icon={faHeart}
-                className="text-[#151414] text-[25px] ml-3"
-              />
-            </StyledBadge>
-          </Link>
-          <Link to="/cart">
-            <StyledBadge badgeContent={cartState.cartItems.length}>
-              <FontAwesomeIcon
-                icon={faBasketShopping}
-                beatFade
-                className="text-[#3c3737] text-[25px] ml-3"
-              />
-            </StyledBadge>
-          </Link>
-        </div>
-      </div>
-      <div className="flex justify-between bg-[#fff] items-center py-5 px-16 max-w-auto mx-auto">
-        <h1 className="text-[#F55253] text-[28px] font-bold">
-          <Link to="/">
-            <AppLogo />
-          </Link>
-        </h1>
-        <div className="hidden lg:flex items-center cursor-pointer">
-          <ul className="flex items-center font-medium text-base text-[#4D4D4D]">
-            <li className="px-6 text-[#F55253]">
-              <Link to="/"> Home </Link>
-            </li>
-            <li className="px-6">
-              <Link to="/"> Menu </Link>
-            </li>
-            <li className="px-6">
-              <Link to="/allproducts"> Products </Link>
-            </li>
-            <li className="px-6">
-              <Link to="/faq"> FAQ </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="flex items-center">
-          {currentUser ? (
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open menu">
-                <Typography
-                  onClick={handleOpenUserMenu}
-                  sx={{ p: 0 }}
-                  className="text-[#262626] font-medium"
-                >
-                  welcome, {currentUser.firstName}
-                  <ArrowDropDownIcon className="text-[#F55253]" />
-                </Typography>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                <div onClick={handleCloseUserMenu} className="w-24">
-                  <Typography
-                    className="text-center text-[#F55253] font-medium 
-                  cursor-pointer hover:bg-[#FDECEC] py-1 rounded-sm"
-                  >
-                    <Link to="/orders">Orders</Link>
-                  </Typography>
-                  <Typography
-                    onClick={() => {
-                      dispatch(logOutUser());
-                    }}
-                    className="text-center text-[#F55253] font-medium 
-                  cursor-pointer hover:bg-[#FDECEC] py-1 rounded-sm "
-                  >
-                    Log out
-                  </Typography>
+    <div>
+      <Banner />
+      <Disclosure as="nav" className="bg-white">
+        {({ open }) => (
+          <>
+            <div className="mx-auto sticky top-0 z-50 max-w-auto px-2 sm:px-6 lg:px-16">
+              <div className="relative flex h-20 items-center justify-between">
+                <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
+                  {/* Mobile menu button*/}
+                  <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <span className="absolute -inset-0.5" />
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </Disclosure.Button>
                 </div>
-              </Menu>
-            </Box>
-          ) : (
-            <h6
-              className="mr-8 pb-1 font-medium text-[#4D4D4D]"
-              style={{ borderBottom: "2px solid #F55253" }}
-            >
-              <Link to="/signin">Log In</Link>
-            </h6>
-          )}
-          {!currentUser && (
-            <div>
-              <button
-                className="px-5 py-2.5 text-[#FDECEC] font-semibold 
-            border-white border-[1px] bg-[#F54748] rounded-[6px]
-            hover:bg-[#FDECEC]  hover:text-[#F54748] hover:border-[#F54748]"
-              >
-                <Link to="/signup">Sign Up</Link>
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-      <div onClick={handleNav} className="block lg:hidden">
-        {!nav ? (
-          <FontAwesomeIcon className="text-4xl text-[#F55253]" icon={faBars} />
-        ) : (
-          <FontAwesomeIcon className="text-4xl text-[#F55253]" icon={faXmark} />
-        )}
-      </div>
-      <div
-        className={
-          !nav
-            ? "fixed left-[-100%]"
-            : "lg:hidden fixed left-0 top-0 w-[70%] h-full border-r border-r-[#F55253] bg-[#F55253] ease-in-out duration-500"
-        }
-      >
-        <ul className=" pt-36 font-medium text-lg text-[#4D4D4D] ">
-          <li className="p-4 text-[#F55253] border-b border-[#F55253]">
-            <Link to="/"> Home </Link>
-          </li>
-          <li className="p-4 border-b border-[#F55253]">Menu</li>
-          <li className="p-4 border-b border-[#F55253]">Service</li>
-          <li className="p-4 border-b border-[#F55253]">Shop</li>
-        </ul>
-        <div className="p-4 relative border-b border-[#ffffff]">
-          <input
-            type="text"
-            placeholder="Search"
-            className="h-14 w-72 text-[16px] font-medium outline-none pl-12 text-[#232323] 
-              shadow-2xl bg-[#Ffffff] rounded-lg"
-          />
-          <div className="absolute top-1/2 -translate-y-1/2 pl-6">
-            <FontAwesomeIcon
-              icon={faSearch}
-              className="text-[#8B8B8B] text-[16px]"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-    // </div>
-  );
-};
+                <div className="flex flex-1 items-center justify-center md:items-center md:justify-start">
+                  <div className="flex flex-shrink-0 items-center">
+                    <Link to="/">
+                      <AppLogo />
+                    </Link>
+                  </div>
+                  <div className="hidden md:ml-10 md:block">
+                    <div className="flex items-center space-x-4">
+                      <div>
+                        {navigation.map((item) => (
+                          <Link
+                            key={item.name}
+                            to={item.to}
+                            className={classNames(
+                              item.current
+                                ? "bg-[#F54748] text-white"
+                                : "text-[#676767] hover:text-[#F54748]",
+                              "rounded-md px-5 py-2 text-sm font-medium"
+                            )}
+                            aria-current={item.current ? "page" : undefined}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </div>
+                      <div
+                        className="flex items-center justify-between h-11 w-[500px] text-[15px] font-medium 
+                 outline-none pl-8 text-[#878686] drop-shadow-md bg-[#ffffff] rounded-lg"
+                      >
+                        <div className="">
+                          <FontAwesomeIcon
+                            icon={faSearch}
+                            className="text-[#8B8B8B] text-[16px]"
+                          />
+                        </div>
+                        <input
+                          type="text"
+                          placeholder="Search Product..."
+                          value={searchItem}
+                          onChange={handleSearchChange}
+                          className="border-none outline-none ml-2 w-full"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-2 md:static md:inset-auto md:ml-6 :pr-0">
+                  <Link to="/cart">
+                    <StyledBadge>
+                      <FontAwesomeIcon
+                        icon={faHeart}
+                        className="relative rounded-full text-[20px] mr-4 bg-[#F54748] p-1 text-[#313133] hover:text-[#FDECEC] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      />
+                    </StyledBadge>
+                  </Link>
+                  <Link to="/cart">
+                    <StyledBadge badgeContent={cartState.cartItems.length}>
+                      <FontAwesomeIcon
+                        icon={faBasketShopping}
+                        className="relative rounded-full text-[20px] mr-1 bg-[#F54748] p-1 text-[#313133] hover:text-[#FDECEC] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                      />
+                    </StyledBadge>
+                  </Link>
 
-export default Navbar;
+                  {/* Profile dropdown */}
+                  <Menu as="div" className="relative ml-3">
+                    {currentUser ? (
+                      <>
+                        <div>
+                          <Menu.Button className="relative outline-none flex items-center text-[#313133] cursor-pointer font-medium hover:text-[#F54748]">
+                            <span className="absolute -inset-1.5" />
+                            <h4 className="ml-2 mr-2">
+                              Hi, {currentUser.firstName}
+                            </h4>
+                            <FontAwesomeIcon
+                              icon={faChevronDown}
+                              className="text-[12px]"
+                            />
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to="#"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Your Profile
+                                </Link>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to="/orders"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Orders
+                                </Link>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  onClick={() => {
+                                    dispatch(logOutUser());
+                                  }}
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Sign out
+                                </Link>
+                              )}
+                            </Menu.Item>
+                          </Menu.Items>
+                        </Transition>
+                      </>
+                    ) : (
+                      <>
+                        <div>
+                          <Menu.Button className="relative rounded-full text-[18px] mr-1 bg-[#F54748] p-1 text-[#313133] hover:text-[#FDECEC] focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                            <FontAwesomeIcon icon={faUserPlus} />
+                          </Menu.Button>
+                        </div>
+                        <Transition
+                          as={Fragment}
+                          enter="transition ease-out duration-100"
+                          enterFrom="transform opacity-0 scale-95"
+                          enterTo="transform opacity-100 scale-100"
+                          leave="transition ease-in duration-75"
+                          leaveFrom="transform opacity-100 scale-100"
+                          leaveTo="transform opacity-0 scale-95"
+                        >
+                          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to="/signin"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Sign In
+                                </Link>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to="/signup"
+                                  className={classNames(
+                                    active ? "bg-gray-100" : "",
+                                    "block px-4 py-2 text-sm text-gray-700"
+                                  )}
+                                >
+                                  Sign Up
+                                </Link>
+                              )}
+                            </Menu.Item>
+                          </Menu.Items>
+                        </Transition>
+                      </>
+                    )}
+                  </Menu>
+                </div>
+              </div>
+            </div>
+
+            <Disclosure.Panel className="md:hidden">
+              <div className="space-y-1 px-2 pb-3 pt-2">
+                <div
+                  className="flex items-center justify-between h-11 w-[100%] text-[15px] font-medium 
+                 outline-none pl-12 text-[#878686] drop-shadow-md bg-[#ffffff] rounded-lg"
+                >
+                  <div className="">
+                    <FontAwesomeIcon
+                      icon={faSearch}
+                      className="text-[#8B8B8B] text-[16px]"
+                    />
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Search Product..."
+                    value={searchItem}
+                    onChange={handleSearchChange}
+                    className="border-none outline-none ml-5 w-full"
+                  />
+                </div>
+                {navigation.map((item) => (
+                  <Disclosure.Button
+                    key={item.name}
+                    as="a"
+                    href={item.href}
+                    className={classNames(
+                      item.current
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "block rounded-md px-3 py-2 text-base font-medium"
+                    )}
+                    aria-current={item.current ? "page" : undefined}
+                  >
+                    {item.name}
+                  </Disclosure.Button>
+                ))}
+              </div>
+            </Disclosure.Panel>
+          </>
+        )}
+      </Disclosure>
+    </div>
+  );
+}

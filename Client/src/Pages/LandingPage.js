@@ -4,6 +4,7 @@ import Service from "./Service";
 import Feature from "./Feature";
 import Footer from "./Footer";
 import Product from "./Product";
+import NewsLetter from "./NewsLetter";
 
 
 export default function LandingPage() {
@@ -13,6 +14,7 @@ export default function LandingPage() {
       <Service />
       <Feature />
       <Product />
+      <NewsLetter/>
       <Footer />
     </div>
   );

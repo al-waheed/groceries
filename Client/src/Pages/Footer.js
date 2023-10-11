@@ -6,7 +6,7 @@ import {AppLogo} from "../Util/AppLogo";
 export default function Footer() {
   return (
     <>
-      <div className="pt-10 px-16">
+      <div className="pt-10 px-16 bg-white">
         <div className="flex justify-between items-start">
           <div className="mr-44">
             <h1 className="text-[#F55253] text-[28px] font-bold mb-6">

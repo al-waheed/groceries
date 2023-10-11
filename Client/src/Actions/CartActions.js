@@ -39,3 +39,8 @@ export const clearCart = () => (dispatch) => {
 export const itemSearchQuery = (item) => (dispatch) => {
   dispatch({ type: "ITEM_SEARCH_QUERY", payload: item });
 };
+
+export const itemSearchCategory = (category) => (dispatch) =>{
+  dispatch({ type: "ITEM_SEARCH_CATEGORY", payload: category });
+} 
+
