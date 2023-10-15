@@ -10,8 +10,8 @@ export default function Feature() {
   return (
     <>
       <div
-        className="flex justify-between items-center
-           mx-16 my-10 bg-[#F54748] p-5 rounded-lg"
+        className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-4
+           mx-16 bg-[#F54748] p-4 rounded-lg"
       >
         <div className="flex items-center py-10 px-6 bg-white rounded-lg">
           <div>

@@ -7,8 +7,8 @@ import { faAward } from "@fortawesome/free-solid-svg-icons";
 export default function Service() {
   return (
     <>
-      <div className="flex justify-between bg-white h-28 rounded-lg px-7 m-16">
-        <div className="flex items-center">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 sm:m-16 lg:gap-8 bg-white rounded-lg px-7 m-4">
+        <div className="flex items-center h-32">
           <div className="pt-10">
             <ShippingIcon />
           </div>
@@ -26,7 +26,7 @@ export default function Service() {
             </TextStyle>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center h-32">
           <div className="mr-5">
             <FontAwesomeIcon
               icon={faAward}
@@ -47,7 +47,7 @@ export default function Service() {
             </TextStyle>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center h-32">
           <div className="pt-10">
             <SecureIcon />
           </div>
@@ -65,7 +65,7 @@ export default function Service() {
             </TextStyle>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center h-32">
           <div className="pt-10">
             <ReturnIcon />
           </div>

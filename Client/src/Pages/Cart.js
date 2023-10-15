@@ -19,7 +19,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import Footer from "./Footer";
 import { addToCart, deleteCartItems, clearCart } from "../Actions/CartActions";
 import CheckOut from "./CheckOut";
 
@@ -157,7 +156,7 @@ export default function Cart() {
             </TableContainer>
             <div
               className="flex flex-col justify-between w-[400px] rounded-lg 
-              border-[1px] border-[#E6E6E6] p-4"
+              border-[1px] border-[#E6E6E6] p-4 bg-white"
             >
               <SmallHeaderStyle style={{ fontSize: "20px", fontWeight: "500" }}>
                 Cart Total
@@ -200,7 +199,6 @@ export default function Cart() {
             Your Cart is Empty
           </SubHeaderStyle>
         )}
-        <Footer />
       </div>
     </>
   );

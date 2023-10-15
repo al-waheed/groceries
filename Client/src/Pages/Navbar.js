@@ -1,7 +1,6 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-// import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,14 +16,7 @@ import { AppLogo } from "../Util/AppLogo";
 import { styled } from "@mui/material/styles";
 import { logOutUser } from "../Actions/UserActions";
 import { itemSearchQuery } from "../Actions/CartActions";
-import Banner from "./Banners";
-
-const navigation = [
-  { name: "Home", to: "/", current: true },
-  { name: "Menu", to: "/", current: false },
-  { name: "Products", to: "/allproducts", current: false },
-  { name: "FAQ", to: "/faq", current: false },
-];
+import Contact from "./Contact";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -41,7 +33,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-export default function Navbar() {
+export default function Navbar({handleOpen}) {
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.signinUsersReducer);
   const searchItem = useSelector((state) => state.searchItemReducer.searchItem);
@@ -53,14 +45,20 @@ export default function Navbar() {
     dispatch(itemSearchQuery(e.target.value));
   };
 
+  const navigation = [
+    { name: "Home", to: "/", current: true },
+    { name: "Products", to: "/allproducts", current: false },
+    { name: "Contact", to: "/contact", onClick: handleOpen, current: false },
+    { name: "FAQ", to: "/faq", current: false },
+  ];
+
   return (
-    <div>
-      <Banner />
+    <div className="sticky top-0 z-50">
       <Disclosure as="nav" className="bg-white">
         {({ open }) => (
           <>
-            <div className="mx-auto sticky top-0 z-50 max-w-auto px-2 sm:px-6 lg:px-16">
-              <div className="relative flex h-20 items-center justify-between">
+            <div className="mx-auto max-w-auto px-2 sm:px-6 lg:px-16">
+              <div className="relative flex h-[12vh] items-center justify-between">
                 <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
                   {/* Mobile menu button*/}
                   <Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">

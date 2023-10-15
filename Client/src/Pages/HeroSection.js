@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 export default function HeroSection() {
   return (
     <>
-      <div className="flex justify-center items-center py-8 px-10 h-[85vh] bg-white">
+      <div className="flex justify-center items-center py-8 px-10 h-[88vh] bg-white">
         <div>
           <div className="flex items-center justify-center bg-[#FDECEC] w-[214px] h-[46px] rounded-[23px]">
             <SubHeaderStyle style={{ fontSize: "16px" }}>
@@ -26,11 +26,14 @@ export default function HeroSection() {
           </div>
           <MainTextStyle style={{ width: "570px", margin: "20px 0" }}>
             Groceries delivered in as little as
-            <span style={{ color: "#F54748", fontWeight: "500" }}> 2 hours</span>
+            <span style={{ color: "#F54748", fontWeight: "500" }}>
+              {" "}
+              2 hours
+            </span>
           </MainTextStyle>
           <TextStyle style={{ width: "478px" }}>
-          Experience the convenience of having a bountiful supply of fresh 
-          groceries delivered to your doorstep 
+            Experience the convenience of having a bountiful supply of fresh
+            groceries delivered to your doorstep
           </TextStyle>
           <div className="flex mt-[60px]">
             <ButtonStyle style={{ marginRight: "20px" }}>
@@ -50,8 +53,9 @@ export default function HeroSection() {
                 icon={faPlayCircle}
                 className="text-[#363636] text-[50px]"
               />
-              See All Grocery
+              <Link to="/allproducts">See All Grocery </Link>
             </ButtonStyle>
+            "
           </div>
         </div>
         <div className="w-[700px] h-auto" style={{ flex: "0 0 50%" }}>

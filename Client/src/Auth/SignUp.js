@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { signupUsers } from "../Actions/UserActions";
 import { Success, Error } from "../Pages/AlertComponent";
 
+
 function SignUp() {
   const [sent, setSent] = React.useState(false);
   const signupState = useSelector((state) => state.signupUsersReducer);

@@ -11,13 +11,14 @@ export default function CheckOut({ subTotal }) {
   const [showOrder, setShowOrder] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const orderstate = useSelector((state) => state.placeOrderReducer);
-  const { loading, error, success } = orderstate;
+  const orderState = useSelector((state) => state.placeOrderReducer);
+  const { loading, error, success } = orderState;
 
   const onToken = (token) => {
     dispatch(placeOrder(token, subTotal));
     setShowOrder(true);
   };
+
 
   useEffect(() => {
     const isUserSignedIn = !!localStorage.getItem("currentUser");

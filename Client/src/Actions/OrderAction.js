@@ -18,10 +18,11 @@ export const placeOrder = (token, subTotal) => async (dispatch, getState) => {
     dispatch({ type: "PLACE_ORDER_SUCCESS" });
     console.log(response);
   } catch (error) {
-    dispatch({ type: "PLACE_ORDER_FAILED" });
-    console.log(error);
+    dispatch({ type: "PLACE_ORDER_FAILED", payload: error.message }); // Capture and dispatch the error message
+    console.error(error);
   }
 };
+
 
 export const getUserOrders = () => async (dispatch, getState) => {
   dispatch({ type: "GET_USER_ORDERS_REQUEST" });
