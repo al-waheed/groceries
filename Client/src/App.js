@@ -9,6 +9,8 @@ import OrderItems from "./Pages/OrderItems";
 import FAQ from "./Pages/FAQ";
 import AllProducts from "./Pages/AllProducts";
 import Footer from "./Pages/Footer";
+import Contact from "./Pages/Contact";
+import CustomerReview from "./Pages/CustomerReview";
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
         <Route path="/orders" element={<OrderItems />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/allproducts" element={<AllProducts />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
+      <CustomerReview/>
       <Footer />
     </div>
   );

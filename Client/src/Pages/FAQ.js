@@ -186,7 +186,7 @@ export default function FAQ() {
           </summary>
 
           <p className="mt-4 leading-relaxed text-gray-700">
-            You can contact us through E-mail and Phone call. This is most
+            You can contact us through E-mail, Phone call or the contact section. This is most
             convenient method of reaching our customer care.
           </p>
         </details>

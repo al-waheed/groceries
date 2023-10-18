@@ -16,7 +16,13 @@ import { AppLogo } from "../Util/AppLogo";
 import { styled } from "@mui/material/styles";
 import { logOutUser } from "../Actions/UserActions";
 import { itemSearchQuery } from "../Actions/CartActions";
-import Contact from "./Contact";
+
+const navigation = [
+  { name: "Home", to: "/", current: true },
+  { name: "Products", to: "/allproducts", current: false },
+  { name: "Contact", to: "/contact", current: false },
+  { name: "FAQ", to: "/faq", current: false },
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -33,7 +39,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-export default function Navbar({handleOpen}) {
+export default function Navbar() {
   const cartState = useSelector((state) => state.cartReducer);
   const userState = useSelector((state) => state.signinUsersReducer);
   const searchItem = useSelector((state) => state.searchItemReducer.searchItem);
@@ -44,13 +50,6 @@ export default function Navbar({handleOpen}) {
   const handleSearchChange = (e) => {
     dispatch(itemSearchQuery(e.target.value));
   };
-
-  const navigation = [
-    { name: "Home", to: "/", current: true },
-    { name: "Products", to: "/allproducts", current: false },
-    { name: "Contact", to: "/contact", onClick: handleOpen, current: false },
-    { name: "FAQ", to: "/faq", current: false },
-  ];
 
   return (
     <div className="sticky top-0 z-50">
@@ -98,7 +97,7 @@ export default function Navbar({handleOpen}) {
                       </div>
                       <div
                         className="flex items-center justify-between h-11 w-[500px] text-[15px] font-medium 
-                 outline-none pl-8 text-[#878686] drop-shadow-md bg-[#ffffff] rounded-lg"
+                 outline-none pl-8 text-[#2E2E2E] drop-shadow-md bg-[#ffffff] rounded-lg"
                       >
                         <div className="">
                           <FontAwesomeIcon

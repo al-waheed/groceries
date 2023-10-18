@@ -40,7 +40,6 @@ export const SmallButtonStyle = Styled.button`
   border-radius: 5px;
   font-weight: 600;
   color: #ffffff;
-  transition: 0.3s;
   background: ${color.ORANGE};
   &:hover{
    font-size: 12.5px;
@@ -50,7 +49,7 @@ export const SmallButtonStyle = Styled.button`
 export const CategoryButtonStyle = Styled.button`
   padding: 5px 10px 5px 10px;
   font-size: 10px;
-  border-radius: 6px;
+  border-top-left-radius: 6px;
   color: #ffffff;
   background: ${(props) => props.background || color.ORANGE};
 `;

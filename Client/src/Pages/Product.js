@@ -46,16 +46,17 @@ export default function Product() {
           </SubHeaderStyle>
           <TextHeaderStyle>Our Products</TextHeaderStyle>
         </div>
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {filteredGroceries.length === 0 ? (
-            <p>No result for your search criteria.</p>
-          ) : (
-            Array.isArray(dataToShow) &&
-            dataToShow.map((groceryItem) => {
-              return <Items key={groceryItem._id} items={groceryItem} />;
-            })
-          )}
-        </div>
+        {filteredGroceries.length === 0 ? (
+          <p className="text-center">No result for your search criteria.</p>
+        ) : (
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+            {Array.isArray(dataToShow) &&
+              dataToShow.map((groceryItem) => {
+                console.log(groceryItem);
+                return <Items key={groceryItem._id} items={groceryItem} />;
+              })}
+          </div>
+        )}
         {!searchItem && (
           <div className="flex justify-center mt-5">
             <ButtonStyle

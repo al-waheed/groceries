@@ -27,17 +27,14 @@ export default function Allproducts() {
     dispatch(itemSearchCategory(category));
   };
 
-  const matchesCategory =
-    selectedCategory === "ALL"
-      ? grocery
-      : grocery.filter((item) => item.category === selectedCategory);
-
-  const filteredGroceries = grocery.filter((item) => {
-    return item.name.toLowerCase().includes(searchItem.toLowerCase());
+  const groceriesToRender = grocery.filter((item) => {
+    const includesSearch = item.name
+      .toLowerCase()
+      .includes(searchItem.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "ALL" || item.category === selectedCategory;
+    return includesSearch && matchesCategory;
   });
-
-  const groceriesToRender =
-    selectedCategory === "ALL" ? filteredGroceries : matchesCategory;
 
   return (
     <div className="bg-inherit">
@@ -137,39 +134,41 @@ export default function Allproducts() {
             <h2 id="products-heading" className="sr-only">
               Products
             </h2>
-
-            <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
-              {/* Filters */}
-              <form className="hidden lg:block">
-                <h3 className="sr-only">Categories</h3>
-                <ul className="space-y-4 border-b border-white rounded-lg p-2 bg-white text-sm font-medium text-[#676767] cursor-pointer">
-                  <li
-                    className="block rounded-lg bg-[#F54748] px-4 py-2 text-white text-sm font-medium"
-                    onClick={() => handleCategoryChange("ALL")}
-                  >
-                    All
-                  </li>
-                  {[...new Set(grocery.map((item) => item.category))].map(
-                    (category) => (
-                      <li
-                        className="block rounded-lg px-4 py-2 text-sm font-medium hover:bg-[#F54748] hover:text-white"
-                        key={category}
-                        onClick={() => handleCategoryChange(category)}
-                      >
-                        {category}
-                      </li>
-                    )
-                  )}
-                </ul>
-              </form>
-
-              {/* Product grid */}
-              <div className="grid grid-cols-1 gap-x-16 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 lg:col-span-4">
-                {groceriesToRender.map((groceryItem) => (
-                  <Items key={groceryItem._id} items={groceryItem} />
-                ))}
+            {groceriesToRender.length === 0 ? (
+              <p className="text-center">No result for your search criteria.</p>
+            ) : (
+              <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
+                {/* Filters */}
+                <form className="hidden lg:block">
+                  <h3 className="sr-only">Categories</h3>
+                  <ul className="space-y-4 border-b border-white rounded-lg p-2 bg-white text-sm font-medium text-[#676767] cursor-pointer">
+                    <li
+                      className="block rounded-lg bg-[#F54748] px-4 py-2 text-white text-sm font-medium"
+                      onClick={() => handleCategoryChange("ALL")}
+                    >
+                      All
+                    </li>
+                    {[...new Set(grocery.map((item) => item.category))].map(
+                      (category) => (
+                        <li
+                          className="block rounded-lg px-4 py-2 text-sm font-medium hover:bg-[#F54748] hover:text-white"
+                          key={category}
+                          onClick={() => handleCategoryChange(category)}
+                        >
+                          {category}
+                        </li>
+                      )
+                    )}
+                  </ul>
+                </form>
+                {/* Product grid */}
+                <div className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 lg:col-span-4">
+                  {groceriesToRender.map((groceryItem) => (
+                    <Items key={groceryItem._id} items={groceryItem} />
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </section>
         </main>
       </div>
