@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Items from "./Items";
-import { SubHeaderStyle, TextHeaderStyle, ButtonStyle } from "../Util/Style";
+import { SubHeaderStyle, TextHeaderStyle, ButtonStyle } from "../Util/Style"; 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { getAllGroceries } from "../Actions/GroceryAction";
@@ -52,7 +52,6 @@ export default function Product() {
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {Array.isArray(dataToShow) &&
               dataToShow.map((groceryItem) => {
-                console.log(groceryItem);
                 return <Items key={groceryItem._id} items={groceryItem} />;
               })}
           </div>
