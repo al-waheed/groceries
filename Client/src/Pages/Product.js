@@ -30,16 +30,9 @@ export default function Product() {
     );
   }
 
-  // const filteredGroceries = grocery.filter((item) => {
-  //   return item.name.toLowerCase().includes(searchItem.toLowerCase());
-  // });
-
-  const filteredGroceries = grocery.reduce((filteredItems, item) => {
-    if (item.name.toLowerCase().includes(searchItem.toLowerCase())) {
-      filteredItems.push(item);
-    }
-    return filteredItems;
-  }, []);  
+  const filteredGroceries = grocery.filter((item) => {
+    return item.name.toLowerCase().includes(searchItem.toLowerCase());
+  });
 
   const sixGroceries = filteredGroceries.slice(0, 10);
   const dataToShow = showAll ? filteredGroceries : sixGroceries;
