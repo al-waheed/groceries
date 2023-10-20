@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Items from "./Items";
-import { SubHeaderStyle, TextHeaderStyle, ButtonStyle } from "../Util/Style"; 
+import { SubHeaderStyle, TextHeaderStyle, ButtonStyle } from "../Util/Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { getAllGroceries } from "../Actions/GroceryAction";
