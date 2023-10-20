@@ -18,7 +18,6 @@ app.use("/api/users/", usersRoute);
 app.use("/api/orders/", orderRoute);
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
   res.send("Server working successfully");
 });
 
