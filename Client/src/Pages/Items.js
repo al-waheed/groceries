@@ -195,9 +195,9 @@ export default function Items({ items }) {
                         Quantity
                       </SmallHeaderStyle>
                       <select
-                        value={varient}
+                        value={quantity}
                         onChange={(e) => {
-                          setVarient(e.target.value);
+                          setQuantity(e.target.value);
                         }}
                         className="rounded-md text-[12px] w-[80px] cursor-pointer
                         border-gray-200 border-2 p-1 capitalize outline-none text-gray-900"

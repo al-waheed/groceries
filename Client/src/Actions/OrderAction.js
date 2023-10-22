@@ -5,7 +5,6 @@ export const placeOrder = (token, subTotal) => async (dispatch, getState) => {
   const currentUser = getState().signinUsersReducer.currentUser;
   const cartItems = getState().cartReducer.cartItems;
 
-  // Convert subTotal to cents and round it
   const subTotalInCents = Math.round(subTotal * 100);
 
   try {
