@@ -10,7 +10,6 @@ import FAQ from "./Pages/FAQ";
 import AllProducts from "./Pages/AllProducts";
 import Footer from "./Pages/Footer";
 import Contact from "./Pages/Contact";
-import CustomerReview from "./Pages/CustomerReview";
 
 function App() {
   return (
@@ -26,7 +25,6 @@ function App() {
         <Route path="/allproducts" element={<AllProducts />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-      <CustomerReview />
       <Footer />
     </div>
   );
