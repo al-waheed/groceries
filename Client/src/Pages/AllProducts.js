@@ -52,8 +52,8 @@ export default function Allproducts() {
   const groceriesToRender = [];
 
   for (let i = 0; i < grocery.length; i++) {
-    const item = grocery[i].toLowerCase();
-    const includesSearch = item.name.includes(searchItem.toLowerCase());
+    const item = grocery[i];
+    const includesSearch = item.name.toLowerCase().includes(searchItem.toLowerCase());
     const matchesCategory =
       selectedCategory === "ALL" || item.category === selectedCategory;
     if (includesSearch && matchesCategory) {
