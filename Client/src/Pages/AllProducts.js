@@ -5,7 +5,9 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { FunnelIcon } from "@heroicons/react/20/solid";
+import Alert from "@mui/material/Alert";
 import { itemSearchCategory } from "../Actions/CartActions";
+import { Loading, Error } from "../Pages/AlertComponent";
 import Items from "./Items";
 
 export default function Allproducts() {
@@ -15,7 +17,7 @@ export default function Allproducts() {
   const selectedCategory = useSelector(
     (state) => state.searchCategoryReducer.selectedCategory
   );
-  const { grocery } = grocerystate;
+  const { grocery, error, loading } = grocerystate;
 
   const dispatch = useDispatch();
 
@@ -26,6 +28,17 @@ export default function Allproducts() {
   const handleCategoryChange = (category) => {
     dispatch(itemSearchCategory(category));
   };
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return (
+      <Error error={<Alert severity="error">Something went wrong</Alert>} />
+    );
+  }
+
 
   // const groceriesToRender = grocery.filter((item) => {
   //   const includesSearch = item.name
@@ -40,12 +53,9 @@ export default function Allproducts() {
 
   for (let i = 0; i < grocery.length; i++) {
     const item = grocery[i];
-    const includesSearch = item.name
-      .toLowerCase()
-      .includes(searchItem.toLowerCase());
+    const includesSearch = item.name.toLowerCase().includes(searchItem.toLowerCase());
     const matchesCategory =
       selectedCategory === "ALL" || item.category === selectedCategory;
-
     if (includesSearch && matchesCategory) {
       groceriesToRender.push(item);
     }
