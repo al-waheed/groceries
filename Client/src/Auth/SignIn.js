@@ -1,133 +1,126 @@
 import React, { useEffect, useState } from "react";
-import { Field, Form, FormSpy } from "react-final-form";
-import Box from "@mui/material/Box";
-import Link from "@mui/material/Link";
-import Typography from "./modules/components/Typography";
-import AppForm from "./modules/views/AppForm";
-import { email, required } from "./modules/form/validation";
-import RFTextField from "./modules/form/RFTextField";
-import FormButton from "./modules/form/FormButton";
-import Alert from "@mui/material/Alert";
-import FormFeedback from "./modules/form/FormFeedback";
-import withRoot from "./modules/withRoot";
+import { Link } from 'react-router-dom'
+import { AppLogo } from "../Util/AppLogo";
 import { useDispatch, useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import { signinUsers } from "../Actions/UserActions";
 import { Error } from "../Pages/AlertComponent";
+import Alert from "@mui/material/Alert";
 
-function SignIn() {
-  const [sent, setSent] = useState(false);
-  const signinState = useSelector((state) => state.signinUsersReducer);
-  const { error } = signinState;
+export default function SignIn() {
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [showPassword, setShowPassword] = useState(false)
+	const signinState = useSelector((state) => state.signinUsersReducer);
+	const { error } = signinState;
+	const dispatch = useDispatch();
 
-  const dispatch = useDispatch();
+	const toggleShowPassword = () => {
+		setShowPassword(!showPassword)
+	}
 
-  const validate = (values) => {
-    const errors = required(["email", "password"], values);
+	const [formData, setFormData] = useState({
+		email: "",
+		password: ""
+	})
 
-    if (!errors.email) {
-      const emailError = email(values.email);
-      if (emailError) {
-        errors.email = emailError;
-      }
-    }
+	useEffect(() => {
+		if (localStorage.getItem("currentUser")) {
+			window.location.href = "/";
+		}
+	}, []);
 
-    return errors;
-  };
+	const handleChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value
+		})
+	}
 
-  useEffect(() => {
-    if (localStorage.getItem("currentUser")) {
-      window.location.href = "/";
-    }
-  }, []);
+	const handleSubmit = () => {
+		setIsSubmitting(true);
+		dispatch(signinUsers(formData));
+		console.log(formData)
+		setTimeout(() => {
+			setIsSubmitting(false);
+			setFormData({})
+		}, 2000);
+	};
 
-  const handleSubmit = (formData, values) => {
-    setSent(true);
-    dispatch(signinUsers(formData));
-    setTimeout(() => {
-      setSent(false);
-      values.reset();
-    }, 2000);
-  };
-
-  return (
-    <React.Fragment>
-      <AppForm>
-        <React.Fragment>
-          <Typography variant="h3" gutterBottom marked="center" align="center">
-            Sign In
-          </Typography>
-          <Typography variant="body2" align="center">
-            {"Not a member yet? "}
-            <Link href="/signup" align="center" underline="always">
-              Sign Up here
-            </Link>
-            {error && (
-              <Error
-                error={<Alert severity="error">invalid Credentials</Alert>}
-              />
-            )}
-          </Typography>
-        </React.Fragment>
-        <Form
-          onSubmit={handleSubmit}
-          subscription={{ submitting: true }}
-          validate={validate}
-        >
-          {({ handleSubmit: handleSubmit2, submitting }) => (
-            <Box
-              component="form"
-              onSubmit={handleSubmit2}
-              noValidate
-              sx={{ mt: 1 }}
-            >
-              <Field
-                autoComplete="email"
-                autoFocus
-                component={RFTextField}
-                disabled={submitting || sent}
-                fullWidth
-                label="Email"
-                margin="normal"
-                name="email"
-                required
-                size="large"
-              />
-              <Field
-                fullWidth
-                size="large"
-                component={RFTextField}
-                disabled={submitting || sent}
-                required
-                name="password"
-                autoComplete="current-password"
-                label="Password"
-                type="password"
-                margin="normal"
-              />
-              <FormSpy subscription={{ submitError: true }}>
-                {({ submitError }) =>
-                  submitError ? (
-                    <FormFeedback error sx={{ mt: 2 }}>
-                      {submitError}
-                    </FormFeedback>
-                  ) : null
-                }
-              </FormSpy>
-              <FormButton
-                sx={{ mt: 3, mb: 2 }}
-                disabled={submitting || sent}
-                size="large"
-                color="secondary"
-                fullWidth
-              >
-                {submitting || sent ? "In progress…" : "Sign In"}
-              </FormButton>
-            </Box>
-          )}
-        </Form>
-      </AppForm>
-    </React.Fragment>
-  );
+	return (
+		<div>
+			<div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+				<div className="mx-auto max-w-lg">
+					<div className="mx-auto mt-4 text-center">
+						<Link to="/">
+							<AppLogo />
+						</Link>
+					</div>
+					<form
+						onSubmit={handleSubmit}
+						className="mb-0 mt-6 space-y-4 rounded-lg bg-white p-4 shadow-lg sm:p-6 lg:p-8"
+					>
+						<p className="text-center text-lg font-medium">
+							Sign in to your account
+						</p>
+						{error && (
+							<Error
+								error={<Alert severity="error">invalid Credentials</Alert>}
+							/>
+						)}
+						<div>
+							<div className="relative">
+								<input
+									type="email"
+									name="email"
+									onChange={handleChange}
+									disabled={isSubmitting}
+									className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+									placeholder="Enter email"
+								/>
+							</div>
+						</div>
+						<div>
+							<div className="relative">
+								<input
+									type={showPassword ? 'text' : 'password'}
+									name="password"
+									onChange={handleChange}
+									disabled={isSubmitting}
+									className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
+									placeholder="Enter password"
+								/>
+								<span
+									onClick={toggleShowPassword}
+									className="absolute inset-y-0 end-0 grid place-content-center px-4 cursor-pointer">
+									{showPassword ? (<FontAwesomeIcon
+										icon={faEyeSlash}
+										className="text-gray-400 text-[16px]"
+									/>) : (<FontAwesomeIcon
+										icon={faEye}
+										className="text-gray-400 text-[16px]"
+									/>)}
+								</span>
+							</div>
+						</div>
+						<button
+							type="submit"
+							disabled={isSubmitting}
+							className={`block w-full rounded-lg text-sm px-5 py-3 font-medium text-white ${isSubmitting ? 'bg-[#fdecec] text-[#966E6E] pointer-events-none' :
+									'bg-[#F54748]'
+								}`}
+						>
+							{isSubmitting ? 'In Progress...' : 'Sign in'}
+						</button>
+						<p className="text-center text-sm text-gray-500">
+							No account?
+							<Link className="underline" to="/signup">
+								Sign up
+							</Link>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+	)
 }
-
-export default withRoot(SignIn);

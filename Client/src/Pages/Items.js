@@ -17,6 +17,7 @@ const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
+  borderRadius: "3px",
   transform: "translate(-50%, -50%)",
   bgcolor: "white",
   boxShadow: 24,
@@ -44,12 +45,13 @@ export default function Items({ items }) {
           </span>
           <FontAwesomeIcon
             icon={faHeart}
-            onClick={handleOpen}
+            onClick={addtocart}
             className="h-4 w-4 absolute end-2 top-4 z-10 rounded-full bg-[#F54748] p-1.5
                    text-white transition hover:text-gray-900/75"
           />
           <img
             src={items.images}
+            onClick={handleOpen}
             alt="item_img"
             className="h-64 w-full object-contain transition duration-500 group-hover:scale-105 sm:h-56"
           />
@@ -126,8 +128,8 @@ export default function Items({ items }) {
       <div>
         <Modal open={open} onClose={handleClose}>
           <Box sx={style}>
-            <div className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
-              <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-lg bg-gray-100 sm:col-span-4 lg:col-span-5">
+            <div className="grid w-full grid-cols-1 items-center gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8">
+              <div className="aspect-h-3 aspect-w-2 overflow-hidden rounded-md sm:col-span-4 lg:col-span-5">
                 <img
                   src={items.images}
                   alt={items.imageAlt}

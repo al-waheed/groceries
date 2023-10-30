@@ -28,8 +28,7 @@ router.post("/placeorder", async (req, res) => {
     );
     if (payment) {
       const newOrder = new Order({
-        firstName: currentUser.firstName,
-        lastName: currentUser.lastName,
+        fullName: currentUser.fullName,
         userid: currentUser._id,
         email: currentUser.email,
         orderItems: cartItems,

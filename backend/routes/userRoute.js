@@ -4,10 +4,10 @@ const User = require("../models/userModel");
 
 // Route to get all users
 router.post("/signup", async (req, res) => {
-  const { firstName, lastName, email, password } = req.body;
+  const { fullName, email, password } = req.body;
 
   // Create a new User instance using the User model
-  const newUser = new User({ firstName, lastName, email, password });
+  const newUser = new User({ fullName, email, password });
 
   try {
     const existingUser = await User.findOne({ email });
@@ -29,8 +29,7 @@ router.post("/signin", async (req, res) => {
     const user = await User.find({ email, password });
     if (user.length > 0) {
       const currentUser = {
-        firstName: user[0].firstName,
-        lastName: user[0].lastName,
+        fullName: user[0].firstName,
         email: user[0].email,
         isAdmin: user[0].isAdmin,
         _id: user[0]._id,

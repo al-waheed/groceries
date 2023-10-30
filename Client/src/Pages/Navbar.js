@@ -142,7 +142,7 @@ export default function Navbar() {
                           <Menu.Button className="relative outline-none flex items-center text-[#313133] cursor-pointer font-medium hover:text-[#F54748]">
                             <span className="absolute -inset-1.5" />
                             <h4 className="ml-2 mr-2">
-                              Hi, {currentUser.firstName}
+                              Hi, {currentUser.fullName[0]}
                             </h4>
                             <FontAwesomeIcon
                               icon={faChevronDown}

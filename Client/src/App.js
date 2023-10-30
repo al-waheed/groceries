@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import SignUp from "./Auth/SignUp";
 import SignIn from "./Auth/SignIn";
 import LandingPage from "./Pages/LandingPage";
@@ -12,9 +12,13 @@ import Footer from "./Pages/Footer";
 import Contact from "./Pages/Contact";
 
 function App() {
+  const location = useLocation();
+  const excludedPaths = ["/signup", "/signin"];
+  const isExcluded = excludedPaths.includes(location.pathname);
+
   return (
     <div>
-      <Navbar />
+      {!isExcluded && <Navbar />}
       <Routes>
         <Route path="/" exact element={<LandingPage />} />
         <Route path="/cart" element={<Cart />} />
@@ -25,7 +29,7 @@ function App() {
         <Route path="/allproducts" element={<AllProducts />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
-      <Footer />
+      {!isExcluded && <Footer />}
     </div>
   );
 }

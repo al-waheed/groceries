@@ -37,7 +37,7 @@ export default function ThankYou () {
             Your order is on the way
           </p>
           <p className="mt-4 text-sm font-medium tracking-widest">
-            Hi {currentUser.firstName} {currentUser.lastName}, your Package with{" "}
+            Hi {currentUser.fullName} your Package with{" "}
             <b className="text-[#F54748]">{order[0]}</b> will be deliver in the
             next 3days. We will appreciate your feedback on delivery experience{" "}
             <a className="text-[#F54748]" href="mailto:orders@grocery.com">

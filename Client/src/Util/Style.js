@@ -49,7 +49,7 @@ export const SmallButtonStyle = Styled.button`
 export const CategoryButtonStyle = Styled.button`
   padding: 5px 10px 5px 10px;
   font-size: 10px;
-  border-top-left-radius: 6px;
+  border-top-left-radius: 8px;
   color: #ffffff;
   background: ${(props) => props.background || color.ORANGE};
 `;
