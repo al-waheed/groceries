@@ -4,7 +4,7 @@ import { AppLogo } from "../Util/AppLogo";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
-import { signinUsers } from "../Actions/UserActions";
+import { signupUsers } from "../Actions/UserActions";
 import { Success, Error } from "../Pages/AlertComponent";
 import Alert from "@mui/material/Alert";
 
@@ -20,18 +20,36 @@ export default function SignUp() {
 	}
 
 	const [formData, setFormData] = useState({
-		fullName:"",
+		fullName: "",
 		email: "",
 		password: ""
 	})
 
-	useEffect(() => {
-		if (localStorage.getItem("currentUser")) {
-			window.location.href = "/";
-		}
-	}, []);
+	const validateName = (name) => {
+		const nameRegex = /^[a-zA-Z ]+$/;
+		return nameRegex.test(name);
+	};
+
+	const validateEmail = (email) => {
+		const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+		return emailRegex.test(email);
+	};
 
 	const handleChange = (e) => {
+		if (!validateName(formData.fullName)) {
+			setIsSubmitting(false);
+			return error && <Error
+				error={<Alert severity="error">Enter a valid password</Alert>}
+			/>
+		}
+
+		if (!validateEmail(formData.email)) {
+			setIsSubmitting(false);
+			return <Error
+				error={<Alert severity="error">Enter a valid name</Alert>}
+			/>
+		}
+
 		setFormData({
 			...formData,
 			[e.target.name]: e.target.value
@@ -40,11 +58,11 @@ export default function SignUp() {
 
 	const handleSubmit = () => {
 		setIsSubmitting(true);
-		dispatch(signinUsers(formData));
+		dispatch(signupUsers(formData));
 		setTimeout(() => {
 			setIsSubmitting(false);
 			setFormData({})
-		}, 2000);
+		}, 3000);
 	};
 
 	return (
@@ -81,6 +99,7 @@ export default function SignUp() {
 									type="text"
 									name="fullName"
 									onChange={handleChange}
+									required
 									disabled={isSubmitting}
 									className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
 									placeholder="Enter fullname"
@@ -92,6 +111,7 @@ export default function SignUp() {
 								<input
 									type="email"
 									name="email"
+									required
 									onChange={handleChange}
 									disabled={isSubmitting}
 									className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
@@ -104,6 +124,7 @@ export default function SignUp() {
 								<input
 									type={showPassword ? 'text' : 'password'}
 									name="password"
+									required
 									onChange={handleChange}
 									disabled={isSubmitting}
 									className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"

@@ -19,8 +19,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "server": "nodemon index.js --ignore client",
-    "build": "npm i"
+    "server": "nodemon index.js",
+    "build": "npm i",
+    "vercel-build": "echo hello"
   },
   "repository": {
     "type": "git",

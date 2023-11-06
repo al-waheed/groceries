@@ -28,7 +28,7 @@ export default function SignIn() {
 		if (localStorage.getItem("currentUser")) {
 			window.location.href = "/";
 		}
-	}, []);
+	},[]);
 
 	const handleChange = (e) => {
 		setFormData({
@@ -40,11 +40,10 @@ export default function SignIn() {
 	const handleSubmit = () => {
 		setIsSubmitting(true);
 		dispatch(signinUsers(formData));
-		console.log(formData)
 		setTimeout(() => {
 			setIsSubmitting(false);
 			setFormData({})
-		}, 2000);
+		}, 3000);
 	};
 
 	return (
@@ -73,6 +72,7 @@ export default function SignIn() {
 								<input
 									type="email"
 									name="email"
+									required
 									onChange={handleChange}
 									disabled={isSubmitting}
 									className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
@@ -85,6 +85,7 @@ export default function SignIn() {
 								<input
 									type={showPassword ? 'text' : 'password'}
 									name="password"
+									required
 									onChange={handleChange}
 									disabled={isSubmitting}
 									className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
