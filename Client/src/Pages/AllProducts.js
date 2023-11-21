@@ -41,7 +41,7 @@ export default function Allproducts() {
   }
 
 
-  const groceriesToRender = !!grocery.filter((item) => {
+  const groceriesToRender = grocery.filter((item) => {
     const includesSearch = item.name
       .toLowerCase()
       .includes(searchItem.toLowerCase());
