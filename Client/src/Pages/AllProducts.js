@@ -18,6 +18,7 @@ export default function Allproducts() {
     (state) => state.searchCategoryReducer.selectedCategory
   );
   const { grocery, error, loading } = grocerystate;
+  console.log(grocery)
 
   const dispatch = useDispatch();
 
@@ -40,7 +41,7 @@ export default function Allproducts() {
   }
 
 
-  const groceriesToRender = grocery?.filter((item) => {
+  const groceriesToRender = !!grocery.filter((item) => {
     const includesSearch = item.name
       .toLowerCase()
       .includes(searchItem.toLowerCase());

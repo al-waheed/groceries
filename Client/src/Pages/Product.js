@@ -30,7 +30,7 @@ export default function Product() {
     );
   }
 
-  const filteredGroceries = grocery?.filter((item) => {
+  const filteredGroceries = !!grocery.filter((item) => {
     return item.name.toLowerCase().includes(searchItem.toLowerCase());
   });
 
