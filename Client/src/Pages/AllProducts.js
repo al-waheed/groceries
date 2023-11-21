@@ -40,27 +40,14 @@ export default function Allproducts() {
   }
 
 
-  // const groceriesToRender = grocery.filter((item) => {
-  //   const includesSearch = item.name
-  //     .toLowerCase()
-  //     .includes(searchItem.toLowerCase());
-  //   const matchesCategory =
-  //     selectedCategory === "ALL" || item.category === selectedCategory;
-  //   return includesSearch && matchesCategory;
-  // });
-
-  const groceriesToRender = [];
-
-  for (let i = 0; i < grocery.length; i++) {
-    const item = grocery[i];
-    const includesSearch = item.name.toLowerCase().includes(searchItem.toLowerCase());
+  const groceriesToRender = grocery.filter((item) => {
+    const includesSearch = item.name
+      .toLowerCase()
+      .includes(searchItem.toLowerCase());
     const matchesCategory =
       selectedCategory === "ALL" || item.category === selectedCategory;
-    if (includesSearch && matchesCategory) {
-      groceriesToRender.push(item);
-    }
-  }
-
+    return includesSearch && matchesCategory;
+  });
 
   return (
     <div className="bg-inherit">
