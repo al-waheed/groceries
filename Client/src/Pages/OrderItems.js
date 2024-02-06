@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Alert from "@mui/material/Alert";
 import { getUserOrders } from "../Actions/OrderAction";
 import { Loading, Error } from "./AlertComponent";
-import Cards from "./ThankYou";
 
 export default function Tables() {
   const dispatch = useDispatch();
@@ -72,7 +71,6 @@ export default function Tables() {
           </tbody>
         </table>
       </div>
-      <Cards/>
     </div>
   );
 }

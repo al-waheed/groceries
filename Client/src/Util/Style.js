@@ -46,6 +46,12 @@ export const SmallButtonStyle = Styled.button`
   }
 `;
 
+export const AlertBtn = Styled.div`
+  color: green;
+  font-size: 13px;
+  font-weight: 600;
+`;
+
 export const CategoryButtonStyle = Styled.button`
   padding: 5px 10px 5px 10px;
   font-size: 10px;

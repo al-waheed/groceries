@@ -4,6 +4,7 @@ import {
   SmallHeaderStyle,
   CategoryButtonStyle,
   SmallButtonStyle,
+  AlertBtn
 } from "../Util/Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
@@ -27,14 +28,27 @@ const style = {
 export default function Items({ items }) {
   const [quantity, setQuantity] = useState(1);
   const [varient, setVarient] = useState("small");
+  const [alert, setAlert] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setQuantity(1);
+    setVarient("small");
+  };
   const dispatch = useDispatch();
 
   const addtocart = () => {
     dispatch(addToCart(items, quantity, varient));
+    setAlert(true);
+    setTimeout(() => {
+      setAlert(false);
+      setQuantity(1);
+      setVarient("small");
+      handleClose()
+    }, 3000);
   };
+
 
   return (
     <div>
@@ -80,7 +94,11 @@ export default function Items({ items }) {
 			            outline-none h-8 border-[#FEF5F5] p-1"
                 >
                   {items.varients.map((varient) => {
-                    return <option value={varient}>{varient}</option>;
+                    return (
+                      <option key={varient} value={varient}>
+                        {varient}
+                      </option>
+                    );
                   })}
                 </select>
               </div>
@@ -109,18 +127,19 @@ export default function Items({ items }) {
                 </select>
               </div>
             </div>
+            {alert && <AlertBtn>Item Added</AlertBtn>}
             <hr style={{ marginBottom: "10px" }} />
             <span className="flex items-center justify-between">
               <SmallHeaderStyle style={{ fontSize: "15px", color: "#313133" }}>
                 ₦{(items.prices[0][varient] * quantity).toFixed(2)}
               </SmallHeaderStyle>
-              <SmallButtonStyle
-                onClick={addtocart}
-                className="transition hover:scale-105"
-              >
-                <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
-                Add
-              </SmallButtonStyle>
+                <SmallButtonStyle
+                  onClick={addtocart}
+                  className="transition hover:scale-105"
+                >
+                  <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
+                  Add
+                </SmallButtonStyle>
             </span>
           </div>
         </Link>
@@ -181,7 +200,11 @@ export default function Items({ items }) {
                         border-gray-200 border-2 p-1 capitalize outline-none text-gray-900"
                       >
                         {items.varients.map((varient) => {
-                          return <option value={varient}>{varient}</option>;
+                          return (
+                            <option key={varient} value={varient}>
+                              {varient}
+                            </option>
+                          );
                         })}
                       </select>
                     </div>
@@ -210,7 +233,8 @@ export default function Items({ items }) {
                       </select>
                     </div>
                   </div>
-                  <button
+                  {alert && <AlertBtn>Item Added</AlertBtn>}
+                   <button
                     onClick={addtocart}
                     type="submit"
                     className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-[#F54748] px-8 py-3 text-base font-medium text-white hover:bg-[#F54748] focus:outline-none focus:ring-2 focus:ring-[#F54748] focus:ring-offset-2"

@@ -1,17 +1,23 @@
 const express = require("express");
+const cors = require('cors');
 const path = require('path');
-const Grocery = require("./models/groceryModel");
+const Grocery = require("./models/groceryModel.js");
 const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
 const db = require("./db.js");
 app.use(express.json());
+app.use(express.json());
 app.use(express.static(path.join(__dirname, 'build')));
 
-const groceriesRoute = require("./routes/groceryRoute");
-const usersRoute = require("./routes/userRoute");
-const orderRoute = require("./routes/orderRoute");
+const groceriesRoute = require("./routes/groceryRoute.js");
+const usersRoute = require("./routes/userRoute.js");
+const orderRoute = require("./routes/orderRoute.js");
+
+app.use(cors({
+  origin: 'http://localhost:3000' 
+}));
 
 app.use("/api/grocery/", groceriesRoute);
 app.use("/api/users/", usersRoute);
@@ -21,7 +27,7 @@ app.get("/", (req, res) => {
   res.send("Server working successfully");
 });
 
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 6000
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

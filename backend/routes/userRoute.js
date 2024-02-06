@@ -29,15 +29,16 @@ router.post("/signin", async (req, res) => {
     const user = await User.find({ email, password });
     if (user.length > 0) {
       const currentUser = {
-        fullName: user[0].firstName,
+        fullName: user[0].fullName,
         email: user[0].email,
         isAdmin: user[0].isAdmin,
         _id: user[0]._id,
       };
       res.send(currentUser);
+      console.log(currentUser)
       // res.status(202).json(currentUser);
     } else {
-      return res.status(406 ).json({ message: "User Logging Failed." });
+      return res.status(406).json({ message: "User Logging Failed." });
     }
   } catch (error) {
     return res.status(400).json({ message: "Something Went Wrong." });

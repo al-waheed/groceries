@@ -20,7 +20,6 @@ import { itemSearchQuery } from "../Actions/CartActions";
 const navigation = [
   { name: "Home", to: "/", current: true },
   { name: "Products", to: "/allproducts", current: false },
-  { name: "Contact", to: "/contact", current: false },
   { name: "FAQ", to: "/faq", current: false },
 ];
 
@@ -44,6 +43,7 @@ export default function Navbar() {
   const userState = useSelector((state) => state.signinUsersReducer);
   const searchItem = useSelector((state) => state.searchItemReducer.searchItem);
   const { currentUser } = userState;
+
 
   const dispatch = useDispatch();
 
@@ -142,7 +142,7 @@ export default function Navbar() {
                           <Menu.Button className="relative outline-none flex items-center text-[#313133] cursor-pointer font-medium hover:text-[#F54748]">
                             <span className="absolute -inset-1.5" />
                             <h4 className="ml-2 mr-2">
-                              Hi, {currentUser.fullName[0]}
+                              Hi, {currentUser.fullName}
                             </h4>
                             <FontAwesomeIcon
                               icon={faChevronDown}

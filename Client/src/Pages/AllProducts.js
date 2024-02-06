@@ -103,7 +103,7 @@ export default function Allproducts() {
                     <ul className="px-2 py-3 font-medium text-gray-900 cursor-pointer">
                       <li
                         className="block rounded-lg bg-[#F54748] px-4 py-2 text-white text-sm font-medium"
-                        onClick={() => handleCategoryChange("ALL")}
+                        onClick={() => handleCategoryChange}
                       >
                         All
                       </li>
