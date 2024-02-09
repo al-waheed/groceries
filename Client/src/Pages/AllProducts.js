@@ -39,26 +39,26 @@ export default function Allproducts() {
     );
   }
 
-  // const groceriesToRender =
-  //   grocery.filter((item) => {
-  //     const includesSearch = item.name
-  //       .toLowerCase()
-  //       .includes(searchItem.toLowerCase());
-  //     const matchesCategory =
-  //       selectedCategory === "ALL" || item.category === selectedCategory;
-  //     return includesSearch && matchesCategory;
-  //   });
+  const groceriesToRender =
+    !!grocery.filter((item) => {
+      const includesSearch = item.name
+        .toLowerCase()
+        .includes(searchItem.toLowerCase());
+      const matchesCategory =
+        selectedCategory === "ALL" || item.category === selectedCategory;
+      return includesSearch && matchesCategory;
+    });
 
-  const groceriesToRender = grocery.reduce((filteredItems, item) => {
-    const includesSearch = item.name.toLowerCase().includes(searchItem.toLowerCase());
-    const matchesCategory = selectedCategory === "ALL" || item.category === selectedCategory;
+  // const groceriesToRender = grocery.reduce((filteredItems, item) => {
+  //   const includesSearch = item.name.toLowerCase().includes(searchItem.toLowerCase());
+  //   const matchesCategory = selectedCategory === "ALL" || item.category === selectedCategory;
     
-    if (includesSearch && matchesCategory) {
-      filteredItems.push(item);
-    }
+  //   if (includesSearch && matchesCategory) {
+  //     filteredItems.push(item);
+  //   }
     
-    return filteredItems;
-  }, []);
+  //   return filteredItems;
+  // }, []);
   
 
   return (
