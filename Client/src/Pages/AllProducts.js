@@ -48,17 +48,6 @@ export default function Allproducts() {
     return includesSearch && matchesCategory;
   });
 
-  // const groceriesToRender = grocery.reduce((filteredItems, item) => {
-  //   const includesSearch = item.name.toLowerCase().includes(searchItem.toLowerCase());
-  //   const matchesCategory = selectedCategory === "ALL" || item.category === selectedCategory;
-
-  //   if (includesSearch && matchesCategory) {
-  //     filteredItems.push(item);
-  //   }
-
-  //   return filteredItems;
-  // }, []);
-
   return (
     <div className="bg-inherit">
       <div>

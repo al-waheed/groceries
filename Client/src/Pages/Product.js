@@ -34,12 +34,6 @@ export default function Product() {
     return item.name.toLowerCase().includes(searchItem.toLowerCase());
   });
 
-  // const filteredGroceries = grocery.reduce((acc, item) => {
-  //   if (item.name.toLowerCase().includes(searchItem.toLowerCase())) {
-  //     acc.push(item);
-  //   }
-  //   return acc;
-  // }, []);
 
   const sixGroceries = filteredGroceries.slice(0, 10);
   const dataToShow = showAll ? filteredGroceries : sixGroceries;
