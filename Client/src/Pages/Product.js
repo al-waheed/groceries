@@ -36,11 +36,9 @@ export default function Product() {
 
   const filteredGroceries = grocery && Array.isArray(grocery)
   ? grocery.filter((item) => {
-      // Ensure item.name is defined before calling toLowerCase()
       return item.name && item.name.toLowerCase().includes(searchItem.toLowerCase());
     })
   : [];
-
 
 
   const sixGroceries = filteredGroceries.slice(0, 10);
