@@ -30,16 +30,11 @@ export default function Product() {
     );
   }
 
-  // const filteredGroceries = grocery?.filter((item) => {
-  //   return item.name.toLowerCase().includes(searchItem.toLowerCase());
-  // });
+  const groceryArray = Object.values(grocery) || [];
 
-  const filteredGroceries = grocery && Array.isArray(grocery)
-  ? grocery.filter((item) => {
-      return item.name && item.name.toLowerCase().includes(searchItem.toLowerCase());
-    })
-  : [];
-
+  const filteredGroceries = groceryArray.filter((item) => {
+    return item.name.toLowerCase().includes(searchItem.toLowerCase());
+  });
 
   const sixGroceries = filteredGroceries.slice(0, 10);
   const dataToShow = showAll ? filteredGroceries : sixGroceries;
