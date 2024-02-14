@@ -112,7 +112,7 @@ export default function Allproducts() {
                       >
                         All
                       </li>
-                      {[...new Set(grocery.map((item) => item.category))].map(
+                      {[...new Set(groceriesToRender.map((item) => item.category))].map(
                         (category) => (
                           <li
                             className="block rounded-lg px-4 py-2 text-sm font-medium hover:bg-[#F54748] hover:text-white"
