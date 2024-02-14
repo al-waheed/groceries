@@ -48,7 +48,7 @@ export default function Product() {
           </SubHeaderStyle>
           <TextHeaderStyle>Our Products</TextHeaderStyle>
         </div>
-        {filteredGroceries.length === 0 ? (
+        {dataToShow.length === 0 ? (
           <p className="text-center">No result for your search criteria.</p>
         ) : (
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
