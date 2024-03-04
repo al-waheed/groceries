@@ -4,10 +4,14 @@ import {
   SmallHeaderStyle,
   CategoryButtonStyle,
   SmallButtonStyle,
-  AlertBtn
+  AlertBtn,
 } from "../Util/Style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faCheck } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCartPlus,
+  faCheck,
+  faCircleCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../Actions/CartActions";
@@ -45,10 +49,9 @@ export default function Items({ items }) {
       setAlert(false);
       setQuantity(1);
       setVarient("small");
-      handleClose()
-    }, 3000);
+      handleClose();
+    }, 2000);
   };
-
 
   return (
     <div>
@@ -127,19 +130,24 @@ export default function Items({ items }) {
                 </select>
               </div>
             </div>
-            {alert && <AlertBtn>Item Added</AlertBtn>}
+            {alert && (
+              <AlertBtn>
+                <FontAwesomeIcon icon={faCircleCheck} className="mr-1" />
+                ADDED
+              </AlertBtn>
+            )}
             <hr style={{ marginBottom: "10px" }} />
             <span className="flex items-center justify-between">
               <SmallHeaderStyle style={{ fontSize: "15px", color: "#313133" }}>
                 ₦{(items.prices[0][varient] * quantity).toFixed(2)}
               </SmallHeaderStyle>
-                <SmallButtonStyle
-                  onClick={addtocart}
-                  className="transition hover:scale-105"
-                >
-                  <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
-                  Add
-                </SmallButtonStyle>
+              <SmallButtonStyle
+                onClick={addtocart}
+                className="transition hover:scale-105"
+              >
+                <FontAwesomeIcon icon={faCartPlus} className="mr-2" />
+                Add
+              </SmallButtonStyle>
             </span>
           </div>
         </Link>
@@ -233,8 +241,13 @@ export default function Items({ items }) {
                       </select>
                     </div>
                   </div>
-                  {alert && <AlertBtn>Item Added</AlertBtn>}
-                   <button
+                  {alert && (
+                    <AlertBtn>
+                      <FontAwesomeIcon icon={faCircleCheck} className="mr-1" />
+                      ADDED
+                    </AlertBtn>
+                  )}
+                  <button
                     onClick={addtocart}
                     type="submit"
                     className="mt-6 flex w-full items-center justify-center rounded-md border border-transparent bg-[#F54748] px-8 py-3 text-base font-medium text-white hover:bg-[#F54748] focus:outline-none focus:ring-2 focus:ring-[#F54748] focus:ring-offset-2"

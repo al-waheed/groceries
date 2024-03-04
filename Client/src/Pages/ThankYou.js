@@ -20,7 +20,7 @@ export default function ThankYou() {
       dispatch(clearCart());
       handleModalClose();
       window.location.href = '/'
-    }, 15000);
+    }, 10000);
     return () => clearTimeout(timer);
   }, [dispatch]);
 

@@ -9,6 +9,7 @@ import OrderItems from "./Pages/OrderItems";
 import FAQ from "./Pages/FAQ";
 import AllProducts from "./Pages/AllProducts";
 import Footer from "./Pages/Footer";
+import Admin from "./Pages/Admin";
 
 function App() {
   const location = useLocation();
@@ -19,13 +20,14 @@ function App() {
     <div>
       {!isExcluded && <Navbar />}
       <Routes>
-        <Route path="/" exact element={<LandingPage />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/orders" element={<OrderItems />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/allproducts" element={<AllProducts />} />
+        <Route path="/" exact Component={LandingPage} />
+        <Route path="/cart"  exact Component={Cart} />
+        <Route path="/signup"  exact Component={SignUp} />
+        <Route path="/signin"  exact Component={SignIn} />
+        <Route path="/orders"  exact Component={OrderItems} />
+        <Route path="/faq"  exact Component={FAQ} />
+        <Route path="/allproducts"  exact Component={AllProducts} />
+        <Route path="/admin/*" Component={Admin} />
       </Routes>
       {!isExcluded && <Footer />}
     </div>
