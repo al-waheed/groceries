@@ -1,66 +1,37 @@
 import React from "react";
-import {
-  MainTextStyle,
-  TextStyle,
-  ButtonStyle,
-  SubHeaderStyle,
-} from "../Util/Style.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlayCircle } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+import { MainTextStyle, ButtonStyle } from "../Util/Style.js";
 import { Link } from "react-router-dom";
+
+const StyledMainTextStyle = styled(MainTextStyle)`
+  max-width: 700px;
+  font-size: 60px;
+  color: #fff;
+  @media (max-width: 768px) {
+    font-size: 40px;
+    line-height: 50px;
+  }
+`;
 
 export default function HeroSection() {
   return (
-    <div className="flex flex-col lg:flex-row justify-center items-center h-[88vh] py-8 px-4 lg:px-16 bg-white">
-      <div className="lg:w-1/2">
-        <div className="flex items-center justify-center bg-[#FDECEC] w-[214px] h-[46px] rounded-[23px]">
-          <SubHeaderStyle style={{ fontSize: "16px" }}>
-            More than Faster
-          </SubHeaderStyle>
-          <img
-            src="/images/image.png"
-            alt="icon"
-            style={{ width: "50px", marginTop: "15px" }}
-          />
-        </div>
-        <MainTextStyle style={{ maxWidth: "570px", margin: "20px 0" }}>
-          Groceries delivered in as little as
-          <span style={{ color: "#F54748", fontWeight: "500" }}>
-            {" "}
-            2 hours
-          </span>
-        </MainTextStyle>
-        <TextStyle style={{ maxWidth: "478px" }}>
-          Experience the convenience of having a bountiful supply of fresh groceries delivered to your doorstep
-        </TextStyle>
-        <div className="flex mt-6 lg:mt-12">
-          <ButtonStyle style={{ marginRight: "20px" }}>
-            <Link to="/signup">Order Now</Link>
-          </ButtonStyle>
-          <ButtonStyle
-            style={{
-              background: "transparent",
-              width: "240px",
-              display: "flex",
-              color: "#363636",
-              alignItems: "center",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <FontAwesomeIcon
-              icon={faPlayCircle}
-              className="text-[#363636] text-[50px]"
-            />
-            <Link to="/allproducts">See All Grocery</Link>
+    <div className="relative bg-no-repeat bg-cover bg-fixed text-center">
+      <img
+        src="/images/agricuturebg.jpg"
+        alt="bg_image"
+        className="h-[88vh] w-[100vw]"
+      />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <StyledMainTextStyle>
+          Natural Products For Lovers of
+          <span style={{ color: "#F54748", fontWeight: "800" }}>Healthy</span>
+          Organic Food
+        </StyledMainTextStyle>
+        <div className="mt-6 lg:mt-12">
+          <ButtonStyle style={{ width: "250px" }}>
+            <Link to="/signup">Discover More</Link>
           </ButtonStyle>
         </div>
-      </div>
-      <div className="lg:w-1/2 w-[700px]" >
-        <img
-          src="/images/Header-Image.png"
-          alt="img"
-          className="h-full max-w-[none]"
-        />
       </div>
     </div>
   );
