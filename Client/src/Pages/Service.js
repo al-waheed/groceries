@@ -1,16 +1,23 @@
 import React from "react";
 import { SmallHeaderStyle, TextStyle } from "../Util/Style";
-import { ShippingIcon, SecureIcon, ReturnIcon } from "../Util/AppLogo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAward } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAward,
+  faTruckFast,
+  faFileShield,
+  faPersonWalkingArrowLoopLeft
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function Service() {
   return (
     <>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 sm:m-16 lg:gap-8 bg-white rounded-lg px-7 m-4">
         <div className="flex items-center h-32">
-          <div className="pt-10">
-            <ShippingIcon />
+          <div className="mr-5">
+            <FontAwesomeIcon
+              icon={faTruckFast}
+              style={{ fontSize: "45px", color: "#F54748" }}
+            />
           </div>
           <div className="ml-[-10px]">
             <SmallHeaderStyle style={{ fontSize: "16px" }}>
@@ -48,8 +55,11 @@ export default function Service() {
           </div>
         </div>
         <div className="flex items-center h-32">
-          <div className="pt-10">
-            <SecureIcon />
+          <div className="mr-5">
+            <FontAwesomeIcon
+              icon={faFileShield}
+              style={{ fontSize: "45px", color: "#F54748" }}
+            />
           </div>
           <div className="ml-[-10px]">
             <SmallHeaderStyle style={{ fontSize: "16px" }}>
@@ -66,8 +76,11 @@ export default function Service() {
           </div>
         </div>
         <div className="flex items-center h-32">
-          <div className="pt-10">
-            <ReturnIcon />
+          <div className="mr-5">
+            <FontAwesomeIcon
+              icon={faPersonWalkingArrowLoopLeft}
+              style={{ fontSize: "45px", color: "#F54748" }}
+            />
           </div>
           <div className="ml-[-10px]">
             <SmallHeaderStyle style={{ fontSize: "16px" }}>

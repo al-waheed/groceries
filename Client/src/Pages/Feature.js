@@ -5,13 +5,24 @@ import {
   ButtonStyle,
   SubHeaderStyle,
 } from "../Util/Style.js";
+import styled from "styled-components";
+
+const StyledTextStyle = styled(TextStyle)`
+  width: 300px;
+  margin: 12px 0;
+  font-size: 14px;
+  line-height: 22px;
+  @media (max-width: 768px) {
+    width: 280px;
+  }
+`
 
 export default function Feature() {
   return (
     <>
       <div
         className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-4
-           mx-16 bg-[#F54748] p-4 rounded-lg"
+           lg:mx-16 bg-[#F54748] p-4 rounded-lg md: mx-6"
       >
         <div className="flex items-center py-10 px-6 bg-white rounded-lg">
           <div>
@@ -37,17 +48,10 @@ export default function Feature() {
             >
               Find Favorites and Discover New Ones
             </TextHeaderStyle>
-            <TextStyle
-              style={{
-                width: "300px",
-                margin: "12px 0",
-                fontSize: "14px",
-                lineHeight: "22px",
-              }}
-            >
-              Spot your favorites and indulge in the 
-              thrill of uncovering new delights.
-            </TextStyle>
+            <StyledTextStyle>
+              Spot your favorites and indulge in the thrill of uncovering new
+              delights.
+            </StyledTextStyle>
             <ButtonStyle
               style={{ fontSize: "13px", width: "120px", height: "40px" }}
             >
@@ -75,16 +79,9 @@ export default function Feature() {
             >
               Sit at Home We Will Take Care Your Order
             </TextHeaderStyle>
-            <TextStyle
-              style={{
-                width: "300px",
-                margin: "10px 0",
-                fontSize: "14px",
-                lineHeight: "22px",
-              }}
-            >
+            <StyledTextStyle>
               Feel relax, sit at home we've got your orders covered.
-            </TextStyle>
+            </StyledTextStyle>
             <ButtonStyle
               style={{ fontSize: "13px", width: "120px", height: "40px" }}
             >

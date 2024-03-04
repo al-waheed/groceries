@@ -47,7 +47,7 @@ export default function Product() {
 
   return (
     <>
-      <div className="pb-[30px] m-16">
+      <div className="pb-[30px] sm:m-8 lg:m-16">
         <div className="text-left mb-7">
           <SubHeaderStyle style={{ marginBottom: "4px" }}>
             Categories

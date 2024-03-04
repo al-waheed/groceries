@@ -8,10 +8,11 @@ const StyledMainTextStyle = styled(MainTextStyle)`
   font-size: 60px;
   color: #fff;
   @media (max-width: 768px) {
-    font-size: 40px;
-    line-height: 50px;
+    font-size: 45px;
+    line-height: 70px;
+    width:350px;
   }
-`;
+`
 
 export default function HeroSection() {
   return (
@@ -23,8 +24,8 @@ export default function HeroSection() {
       />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <StyledMainTextStyle>
-          Natural Products For Lovers of
-          <span style={{ color: "#F54748", fontWeight: "800" }}>Healthy</span>
+          Natural Products For Lovers of {' '}
+          <span style={{ color: "#F54748", fontWeight: "800" }}>Healthy</span>{' '}
           Organic Food
         </StyledMainTextStyle>
         <div className="mt-6 lg:mt-12">
