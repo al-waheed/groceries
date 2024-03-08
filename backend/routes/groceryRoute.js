@@ -3,7 +3,7 @@ const router = express.Router();
 const Grocery = require("../models/groceryModel");
 
 // Route to get all groceries
-router.get("https://grocery-backend-coj7.onrender.com/getallgroceries", async (req, res) => {
+router.get("/getallgroceries", async (req, res) => {
   try {
     const groceries = await Grocery.find({});
     res.send(groceries);
