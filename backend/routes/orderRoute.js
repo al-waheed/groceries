@@ -5,7 +5,6 @@ const Order = require("../models/orderModel");
 const dotenv = require('dotenv');
 dotenv.config(); 
 const stripe = require("stripe")(process.env.STRIKE_API_KEY_TEST)
- 
 
 router.post("/placeorder", async (req, res) => {
   const { token, subTotal, currentUser, cartItems } = req.body;

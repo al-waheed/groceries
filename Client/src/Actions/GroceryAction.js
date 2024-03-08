@@ -3,7 +3,7 @@ import axios from "axios";
 export const getAllGroceries = () => async dispatch => {
   dispatch({ type: "GET_GROCERIES_REQUEST" });
   try {
-    const response = await axios.get('https://grocery-backend-coj7.onrender.com/api/grocery/getallgroceries');
+    const response = await axios.get('api/grocery/getallgroceries');
     console.log("datareponse", response)
     dispatch({ type: "GET_GROCERIES_SUCCESS", payload: response.data });
   } catch (error) {
