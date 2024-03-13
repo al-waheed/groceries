@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../Actions/OrderAction";
 import Alert from "@mui/material/Alert";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBagShopping } from "@fortawesome/free-solid-svg-icons";
 import { Loading, Error, Success } from "../Pages/AlertComponent";
 import ThankYou from "./ThankYou";
 
@@ -18,7 +20,6 @@ export default function CheckOut({ subTotal }) {
     dispatch(placeOrder(token, subTotal));
     setShowOrder(true);
   };
-
 
   useEffect(() => {
     const isUserSignedIn = !!localStorage.getItem("currentUser");
@@ -51,10 +52,10 @@ export default function CheckOut({ subTotal }) {
           description="GROCERY ITEMS"
         >
           <button
-            className="w-full px-10 py-3.5 bg-[#F54748] text-[16px]
-		   text-white rounded-[43px]"
+            className="w-full py-3 bg-[#F54748] hover:bg-[#f02e2e] text-sm
+		   text-white font-semibold"
           >
-            Proceed to checkout
+            <FontAwesomeIcon icon={faBagShopping} fade className="mr-3" /> CHECKOUT
           </button>
         </StripeCheckout>
       ) : (

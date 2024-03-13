@@ -19,7 +19,7 @@ export default function Tables() {
       {error && (
         <Error error={<Alert severity="error">Something went wrong</Alert>} />
       )}
-      <div className="overflow-x-auto ">
+      <div className="overflow-x-auto">
         <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
           <thead className="ltr:text-left rtl:text-right font-bold text-base">
             <tr>
