@@ -154,7 +154,7 @@ export default function Cart1() {
               </div>
               <div className="flex justify-between mt-10 mb-5">
                 <span className="font-semibold text-sm uppercase">
-                  Tax {cartItems.length}
+                  Tax
                 </span>
                 <span className="font-semibold text-sm">Free</span>
               </div>

@@ -45,7 +45,7 @@ export default function Tables() {
                     {order.orderItems.map((item, id) => (
                       <div key={id}>
                         <h3>
-                          {item.name}[{item.varients}] * {item.quantity} ={" "}
+                          {item.name}[{item.varients}] * {item.quantity} =
                           ₦{item.price.toFixed(2)}
                         </h3>
                       </div>
@@ -64,7 +64,7 @@ export default function Tables() {
                     <h3>{order._id}</h3>
                   </td>
                   <td className="whitespace-nowrap px-4 py-2 text-gray-700">
-                  ₦120,000
+                  <h3>₦{order.orderAmount}</h3>
                   </td>
                 </tr>
               ))}

@@ -44,7 +44,7 @@ export default function CheckOut({ subTotal }) {
       {!showOrder ? (
         <StripeCheckout
           stripeKey={process.env.REACT_APP_STRIPE_KEY}
-          amount={Math.round(subTotal * 100)}
+          amount={Math.round((subTotal + 450) * 100)}
           shippingAddress
           billingAddress
           token={onToken}
