@@ -1,4 +1,3 @@
-
 export const addToCart =
   (items, quantity, varients) => (dispatch, getState) => {
     var cartItem = {
@@ -41,7 +40,6 @@ export const itemSearchQuery = (item) => (dispatch) => {
   dispatch({ type: "ITEM_SEARCH_QUERY", payload: item });
 };
 
-export const itemSearchCategory = (category) => (dispatch) =>{
+export const itemSearchCategory = (category) => (dispatch) => {
   dispatch({ type: "ITEM_SEARCH_CATEGORY", payload: category });
-} 
-
+};

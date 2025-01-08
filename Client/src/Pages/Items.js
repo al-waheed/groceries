@@ -47,8 +47,6 @@ export default function Items({ items }) {
     setAlert(true);
     setTimeout(() => {
       setAlert(false);
-      setQuantity(1);
-      setVarient("small");
       handleClose();
     }, 2000);
   };

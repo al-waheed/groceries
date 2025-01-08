@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AppLogo } from "../Util/AppLogo";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,52 +9,26 @@ import { Success, Error } from "../Pages/AlertComponent";
 import Alert from "@mui/material/Alert";
 
 export default function SignUp() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const signupState = useSelector((state) => state.signupUsersReducer);
-  const { error, loading, success } = signupState;
-  const dispatch = useDispatch();
-
-  const toggleShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     password: "",
   });
+  const signupState = useSelector((state) => state.signupUsersReducer);
+  const { error, loading, success } = signupState;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  // const validateName = (name) => {
-  // 	const nameRegex = /^[a-zA-Z ]+$/;
-  // 	return nameRegex.test(name);
-  // };
-
-  // const validateEmail = (email) => {
-  // 	const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-  // 	return emailRegex.test(email);
-  // };
-
-  // if (!validateName(formData.fullName)) {
-  // 	setIsSubmitting(false);
-  // 	return error && <Error
-  // 		error={<Alert severity="error">Enter a valid password</Alert>}
-  // 	/>
-  // }
-
-  // if (!validateEmail(formData.email)) {
-  // 	setIsSubmitting(false);
-  // 	return <Error
-  // 		error={<Alert severity="error">Enter a valid name</Alert>}
-  // 	/>
-  // }
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   useEffect(() => {
-		if (localStorage.getItem("currentUser")) {
-			window.location.href = "/signin";
-		}
-	},[]);
-
+    if (localStorage.getItem("currentUser")) {
+      window.location.href = "/signin";
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -65,18 +39,18 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     dispatch(signupUsers(formData));
-    setTimeout(() => {
-      setIsSubmitting(false);
+    if (success) {
       setFormData({
         fullName: "",
         email: "",
         password: "",
       });
-    }, 3000);
+    }
+    setTimeout(() => {
+      navigate("/signin");
+    }, 2000);
   };
-
 
   return (
     <div>
@@ -94,15 +68,16 @@ export default function SignUp() {
             <p className="text-center text-lg font-medium">
               Create new account
             </p>
-            {loading && <h5>Loading....</h5>}
             {success && (
               <Success
-                error={<Alert severity="error">Successfully Registered</Alert>}
+                success={
+                  <Alert severity="success">Successfully Registered</Alert>
+                }
               />
             )}
             {error && (
               <Error
-                error={<Alert severity="error">invalid Credentials</Alert>}
+                error={<Alert severity="error">Email Already Exists</Alert>}
               />
             )}
             <div>
@@ -113,7 +88,6 @@ export default function SignUp() {
                   value={formData.fullName}
                   onChange={handleChange}
                   required
-                  disabled={isSubmitting}
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter fullname"
                 />
@@ -127,7 +101,6 @@ export default function SignUp() {
                   required
                   onChange={handleChange}
                   value={formData.email}
-                  disabled={isSubmitting}
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter email"
                 />
@@ -141,7 +114,6 @@ export default function SignUp() {
                   required
                   onChange={handleChange}
                   value={formData.password}
-                  disabled={isSubmitting}
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter password"
                 />
@@ -165,17 +137,16 @@ export default function SignUp() {
             </div>
             <button
               type="submit"
-              disabled={isSubmitting}
               className={`block w-full rounded-lg text-sm px-5 py-3 font-medium text-white ${
-                isSubmitting
+                loading
                   ? "bg-[#fdecec] text-[#966E6E] pointer-events-none"
                   : "bg-[#F54748]"
               }`}
             >
-              {isSubmitting ? "In Progress..." : "Sign up"}
+              {loading ? "In Progress..." : "Sign up"}
             </button>
             <p className="text-center text-sm text-gray-500">
-              Already have an account?
+              Already have an account?{" "}
               <Link className="underline" to="/signin">
                 Sign in
               </Link>

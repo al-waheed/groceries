@@ -16,7 +16,6 @@ router.post("/signup", async (req, res) => {
     }
     await newUser.save();
     res.send("User Registered Successfully.");
-    // res.status(201).json(newUser);
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
@@ -35,8 +34,6 @@ router.post("/signin", async (req, res) => {
         _id: user[0]._id,
       };
       res.send(currentUser);
-      console.log(currentUser)
-      // res.status(202).json(currentUser);
     } else {
       return res.status(406).json({ message: "User Logging Failed." });
     }

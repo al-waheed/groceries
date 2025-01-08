@@ -9,7 +9,6 @@ import OrderItems from "./Pages/OrderItems";
 import FAQ from "./Pages/FAQ";
 import AllProducts from "./Pages/AllProducts";
 import Footer from "./Pages/Footer";
-import Admin from "./Pages/Admin";
 
 function App() {
   const location = useLocation();
@@ -27,7 +26,6 @@ function App() {
         <Route path="/orders"  exact Component={OrderItems} />
         <Route path="/faq"  exact Component={FAQ} />
         <Route path="/allproducts"  exact Component={AllProducts} />
-        <Route path="/admin/*" Component={Admin} />
       </Routes>
       {!isExcluded && <Footer />}
     </div>

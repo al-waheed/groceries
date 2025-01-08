@@ -9,20 +9,18 @@ import { Error } from "../Pages/AlertComponent";
 import Alert from "@mui/material/Alert";
 
 export default function SignIn() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const signinState = useSelector((state) => state.signinUsersReducer);
-  const { error } = signinState;
+  const { error, loading, success } = signinState;
   const dispatch = useDispatch();
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
 
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
@@ -35,20 +33,19 @@ export default function SignIn() {
       ...formData,
       [e.target.name]: e.target.value,
     });
-	console.log(formData)
   };
 
   const handleSubmit = (e) => {
-	e.preventDefault();
-    setIsSubmitting(true);
+    e.preventDefault();
     dispatch(signinUsers(formData));
     setTimeout(() => {
-      setIsSubmitting(false);
-      setFormData({
-        email: "",
-        password: "",
-      });
-    }, 3000);
+      if (success) {
+        setFormData({
+          email: "",
+          password: "",
+        });
+      }
+    }, 2000);
   };
 
   return (
@@ -80,7 +77,6 @@ export default function SignIn() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  disabled={isSubmitting}
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter email"
                 />
@@ -93,7 +89,6 @@ export default function SignIn() {
                   name="password"
                   required
                   onChange={handleChange}
-                  disabled={isSubmitting}
                   value={formData.password}
                   className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
                   placeholder="Enter password"
@@ -118,17 +113,16 @@ export default function SignIn() {
             </div>
             <button
               type="submit"
-              disabled={isSubmitting}
               className={`block w-full rounded-lg text-sm px-5 py-3 font-medium text-white ${
-                isSubmitting
+                loading
                   ? "bg-[#fdecec] text-[#966E6E] pointer-events-none"
                   : "bg-[#F54748]"
               }`}
             >
-              {isSubmitting ? "In Progress..." : "Sign in"}
+              {loading ? "In Progress..." : "Sign in"}
             </button>
             <p className="text-center text-sm text-gray-500">
-              No account?
+              No account?{" "}
               <Link className="underline" to="/signup">
                 Sign up
               </Link>

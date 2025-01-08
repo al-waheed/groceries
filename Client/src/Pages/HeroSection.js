@@ -30,7 +30,7 @@ export default function HeroSection() {
         </StyledMainTextStyle>
         <div className="mt-6 lg:mt-12">
           <ButtonStyle style={{ width: "250px" }}>
-            <Link to="/signup">Discover More</Link>
+            <Link to="/allproducts">Discover More</Link>
           </ButtonStyle>
         </div>
       </div>
