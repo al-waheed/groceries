@@ -1,15 +1,12 @@
 # 🛒 Groceries — Natural Products For Organic Lovers
 
-A modern and user-friendly eCommerce platform that connects people with clean, fresh, and healthy organic produce.  
-Built for customers who love nature and care deeply about what they eat.
+A modern and user-friendly eCommerce platform that connects people with clean, fresh, and healthy organic produce. Built for customers who love nature and care deeply about what they eat.
 
 ---
 
 ## 🚀 Overview
 
-**Groceries** is a full-stack web application that allows users to browse farm-fresh organic food, add items to their cart, and securely complete purchases using **Stripe**.  
-It includes real authentication, order tracking, a sleek UI, and a mission to promote healthy living.
-
+**Groceries** is a full-stack web application that allows users to browse farm-fresh organic food, add items to their cart, and securely complete purchases using **Stripe**. It includes real authentication, order tracking, a sleek UI, and a mission to promote healthy living.
 The app delivers high performance with a seamless and delightful shopping experience across all devices.
 
 ---
