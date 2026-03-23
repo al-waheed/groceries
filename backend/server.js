@@ -13,11 +13,11 @@ const orderRoute = require("./routes/orderRoute.js");
 dotenv.config();
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "build")));
+// app.use(express.static(path.join(__dirname, "build")));
 app.use(
   cors({
-    origin: "http://localhost:3000",
-  })
+    origin: ["http://localhost:3000", "https://farmfood.netlify.app/"],
+  }),
 );
 
 app.use("/api/grocery/", groceriesRoute);
