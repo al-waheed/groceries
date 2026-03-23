@@ -3,7 +3,7 @@ const cors = require("cors");
 const path = require("path");
 const Grocery = require("./models/groceryModel.js");
 const dotenv = require("dotenv");
-const PORT = 6000;
+const PORT = process.env.PORT || 6000;
 const app = express();
 const db = require("./db.js");
 const groceriesRoute = require("./routes/groceryRoute.js");
@@ -16,7 +16,7 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname, "build")));
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://farmfood.netlify.app/"],
+    origin: ["http://localhost:3000", "https://farmfood.netlify.app"],
   }),
 );
 
