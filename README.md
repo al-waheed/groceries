@@ -53,7 +53,7 @@ The app delivers high performance with a seamless and delightful shopping experi
 ### 🔹 Stripe Payment
 ![Payment](./Client/public/images/4.png)
 
-### 🔹 Order List
+### 🔹 Order List History
 ![Orders](./Client/public/images/6.png)
 
 ---
