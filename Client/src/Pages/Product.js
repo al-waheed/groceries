@@ -11,8 +11,8 @@ import { Loading, Error } from "../Pages/AlertComponent";
 export default function Product() {
   const [showAll, setShowAll] = useState(false);
   const grocerystate = useSelector((state) => state.getAllGroceriesReducers);
-  // const searchItem = useSelector((state) => state.searchItemReducer.searchItem);
-  const searchItem = useSelector((state) => state.searchItemReducer.searchItem) || '';
+  const searchItem =
+    useSelector((state) => state.searchItemReducer.searchItem) || "";
 
   const { grocery, error, loading } = grocerystate;
 
@@ -34,12 +34,10 @@ export default function Product() {
 
   const groceryArray = Object.values(grocery) || [];
 
-  // const filteredGroceries = groceryArray.filter((item) => {
-  //   return item.name.toLowerCase().includes(searchItem.toLowerCase());
-  // });
-
   const filteredGroceries = groceryArray.filter((item) => {
-    return item.name && item.name.toLowerCase().includes(searchItem.toLowerCase());
+    return (
+      item.name && item.name.toLowerCase().includes(searchItem.toLowerCase())
+    );
   });
 
   const sixGroceries = filteredGroceries.slice(0, 10);

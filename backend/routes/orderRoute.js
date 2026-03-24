@@ -23,7 +23,7 @@ router.post("/placeorder", async (req, res) => {
       },
       {
         idempotencyKey: uuidv4(),
-      }
+      },
     );
     if (payment) {
       const newOrder = new Order({
