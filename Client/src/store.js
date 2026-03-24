@@ -1,13 +1,16 @@
 import { combineReducers } from "redux";
 import { legacy_createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { thunk } from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import getAllGroceriesReducers from "./Reducers/GroceryReducer";
 import { cartReducer } from "./Reducers/CartReducer";
 import { signupUsersReducer, signinUsersReducer } from "./Reducers/UserReducer";
-import { placeOrderReducer, getUserOrdersReducers } from "./Reducers/OrderReducer";
-import searchItemReducer from "./Reducers/SearchReducer"
-import searchCategoryReducer from "./Reducers/SearchCategories"
+import {
+  placeOrderReducer,
+  getUserOrdersReducers,
+} from "./Reducers/OrderReducer";
+import searchItemReducer from "./Reducers/SearchReducer";
+import searchCategoryReducer from "./Reducers/SearchCategories";
 
 const finalReducer = combineReducers({
   getAllGroceriesReducers: getAllGroceriesReducers,
@@ -38,7 +41,7 @@ const composeEnhancers = composeWithDevTools({});
 const store = legacy_createStore(
   finalReducer,
   initialState,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk)),
 );
 
 export default store;
