@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import { legacy_createStore, applyMiddleware } from "redux";
-import { thunk } from "redux-thunk";
+import thunk  from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import getAllGroceriesReducers from "./Reducers/GroceryReducer";
 import { cartReducer } from "./Reducers/CartReducer";
