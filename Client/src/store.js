@@ -43,5 +43,4 @@ const store = legacy_createStore(
   initialState,
   composeEnhancers(applyMiddleware(thunk)),
 );
-
 export default store;
